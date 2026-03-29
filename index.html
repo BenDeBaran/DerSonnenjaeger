@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Sonnenjäger – Sunlight A72 Wohnmobil mieten</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #F5A623;
+    --sun-deep: #E8831A;
+    --forest: #1A3A2A;
+    --forest-mid: #2D5A3D;
+    --forest-light: #4A7C59;
+    --cream: #FAF6EE;
+    --warm-white: #FFFDF8;
+    --text: #1A1A1A;
+    --muted: #6B6B5A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--forest);
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(245,166,35,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--warm-white));
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 48px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--sun);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--sun); }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 48px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245,166,35,0.15);
+    border: 1px solid rgba(245,166,35,0.3);
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    width: fit-content;
+  }
+
+  .hero-badge span {
+    color: var(--sun);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero-badge .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--sun);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .hero-title .accent { color: var(--sun); font-style: italic; }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .hero-desc {
+    max-width: 480px;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--sun);
+    color: var(--forest);
+    padding: 14px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--sun-deep); transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    padding: 14px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    z-index: 10;
+  }
+
+  .stat {
+    padding: 28px 32px;
+    background: rgba(26,58,42,0.8);
+  }
+
+  .stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--sun);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* SECTIONS */
+  section { padding: 80px 48px; }
+
+  .section-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sun-deep);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1.1;
+    margin-bottom: 48px;
+  }
+
+  /* PREISE */
+  .preise { background: var(--cream); }
+
+  .preis-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 40px;
+  }
+
+  .preis-card {
+    padding: 40px 32px;
+    background: white;
+    position: relative;
+  }
+
+  .preis-card.featured {
+    background: var(--forest);
+    color: white;
+  }
+
+  .preis-season {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .preis-card.featured .preis-season { color: rgba(255,255,255,0.5); }
+
+  .preis-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1;
+  }
+
+  .preis-card.featured .preis-amount { color: var(--sun); }
+
+  .preis-unit { font-size: 0.9rem; color: var(--muted); margin-top: 4px; }
+  .preis-card.featured .preis-unit { color: rgba(255,255,255,0.5); }
+
+  .preis-period {
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .preis-card.featured .preis-period { color: rgba(255,255,255,0.6); }
+
+  .preis-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--sun);
+    color: var(--forest);
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+  }
+
+  .preis-info {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .info-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  .info-value {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--forest);
+  }
+
+  /* KALENDER */
+  .kalender { background: var(--warm-white); }
+
+  .calendar-wrapper {
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .calendar-wrapper iframe {
+    display: block;
+    width: 100%;
+    height: 600px;
+    border: none;
+  }
+
+  /* AUSSTATTUNG */
+  .ausstattung { background: var(--forest); color: white; }
+  .ausstattung .section-title { color: var(--cream); }
+
+  .ausst-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .ausst-item {
+    padding: 32px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .ausst-icon {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+
+  .ausst-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+
+  .ausst-detail {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.5;
+  }
+
+  /* BEDINGUNGEN */
+  .bedingungen { background: var(--cream); }
+
+  .bed-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+  }
+
+  .bed-item {
+    background: white;
+    padding: 32px;
+  }
+
+  .bed-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .bed-value {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--forest);
+  }
+
+  /* KONTAKT */
+  .kontakt { background: var(--warm-white); }
+
+  .kontakt-inner {
+    max-width: 600px;
+  }
+
+  .kontakt-box {
+    background: var(--forest);
+    padding: 48px;
+    border-radius: 4px;
+    margin-top: 40px;
+  }
+
+  .kontakt-box p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .kontakt-links {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .kontakt-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+
+  .kontakt-link:hover { background: rgba(255,255,255,0.1); }
+
+  .kontakt-link .icon { font-size: 1.2rem; width: 24px; text-align: center; }
+
+  .review {
+    margin-top: 48px;
+    padding: 32px;
+    background: var(--cream);
+    border-left: 3px solid var(--sun);
+  }
+
+  .review-text {
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--forest);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .review-author {
+    font-size: 0.82rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .stars { color: var(--sun); font-size: 0.9rem; margin-bottom: 8px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--forest);
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  footer .logo-text {
+    font-family: 'Playfair Display', serif;
+    color: var(--sun);
+    font-size: 1rem;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero-content, section { padding: 48px 24px; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .preis-cards, .ausst-grid { grid-template-columns: 1fr; }
+    .bed-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <nav>
+    <div class="nav-logo">Der Sonnenjäger</div>
+    <ul class="nav-links">
+      <li><a href="#preise">Preise</a></li>
+      <li><a href="#verfuegbarkeit">Verfügbarkeit</a></li>
+      <li><a href="#ausstattung">Ausstattung</a></li>
+      <li><a href="#kontakt">Anfrage</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="dot"></div>
+      <span>Sunlight A72 · Vilshofen a. d. Donau</span>
+    </div>
+    <h1 class="hero-title">Der<br><span class="accent">Sonnenjäger</span></h1>
+    <p class="hero-subtitle">Familienwohnmobil · Alkoven · 6 Personen</p>
+    <p class="hero-desc">Ein vollausgestattetes Alkoven-Wohnmobil für Familien mit bis zu 6 Personen. Standheizung, SAT-TV, Rückfahrkamera und alles was ihr für eine unvergessliche Reise braucht.</p>
+    <div class="hero-cta">
+      <a href="#verfuegbarkeit" class="btn-primary">Verfügbarkeit prüfen</a>
+      <a href="#kontakt" class="btn-secondary">Buchungsanfrage</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-value">6</div>
+      <div class="stat-label">Schlafplätze</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">7,23m</div>
+      <div class="stat-label">Fahrzeuglänge</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">4,9★</div>
+      <div class="stat-label">PaulCamper</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">2018</div>
+      <div class="stat-label">Baujahr</div>
+    </div>
+  </div>
+</section>
+
+<!-- PREISE -->
+<section class="preise" id="preise">
+  <div class="section-tag">Mietpreise 2026</div>
+  <h2 class="section-title">Einfache, transparente<br>Preise.</h2>
+
+  <div class="preis-cards">
+    <div class="preis-card">
+      <div class="preis-season">Sparsaison</div>
+      <div class="preis-amount">100€</div>
+      <div class="preis-unit">pro Tag</div>
+      <div class="preis-period">November – März</div>
+    </div>
+    <div class="preis-card featured">
+      <div class="preis-badge">Beliebt</div>
+      <div class="preis-season">Nebensaison</div>
+      <div class="preis-amount">115€</div>
+      <div class="preis-unit">pro Tag</div>
+      <div class="preis-period">April – Juni &amp; September – Oktober</div>
+    </div>
+    <div class="preis-card">
+      <div class="preis-season">Hauptsaison</div>
+      <div class="preis-amount">128€</div>
+      <div class="preis-unit">pro Tag</div>
+      <div class="preis-period">Juli – August</div>
+    </div>
+  </div>
+
+  <div class="preis-info">
+    <div class="info-item">
+      <span class="info-label">Endreinigung</span>
+      <span class="info-value">100 € einmalig</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Kaution</span>
+      <span class="info-value">1.500 € (Selbstbeteiligung)</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Mindestmietdauer</span>
+      <span class="info-value">7 Tage</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Versicherung</span>
+      <span class="info-value">Im Mietpreis enthalten</span>
+    </div>
+  </div>
+</section>
+
+<!-- KALENDER -->
+<section class="kalender" id="verfuegbarkeit">
+  <div class="section-tag">Echtzeit</div>
+  <h2 class="section-title">Verfügbarkeit.</h2>
+  <div class="calendar-wrapper">
+    <iframe src="https://calendar.google.com/calendar/embed?src=fe50f37783525da8987ebf206701742c76d633b1d42919bca143a33d1d9289f4%40group.calendar.google.com&ctz=Europe%2FBerlin&bgcolor=%23FAF6EE&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&mode=MONTH" frameborder="0" scrolling="no" title="Verfügbarkeitskalender Sonnenjäger"></iframe>
+  </div>
+  <p style="margin-top:16px; font-size:0.82rem; color:var(--muted);">🟢 Verfügbar &nbsp;&nbsp; 🔴 Nicht verfügbar &nbsp;&nbsp; Anfragen bitte per E-Mail mit gewünschtem Reisezeitraum.</p>
+</section>
+
+<!-- AUSSTATTUNG -->
+<section class="ausstattung" id="ausstattung">
+  <div class="section-tag" style="color: rgba(245,166,35,0.7);">Vollausstattung</div>
+  <h2 class="section-title">Alles dabei.</h2>
+  <div class="ausst-grid">
+    <div class="ausst-item">
+      <div class="ausst-icon">🛏️</div>
+      <div class="ausst-name">Schlafplätze</div>
+      <div class="ausst-detail">Alkoven 160×200 cm · Heckbett 90×200 cm · Sitzgruppe umbaubar 120×175 cm</div>
+    </div>
+    <div class="ausst-item">
+      <div class="ausst-icon">🍳</div>
+      <div class="ausst-name">Küche</div>
+      <div class="ausst-detail">3-Flammen-Gasherd · Kühlschrank mit Gefrierfach · Geschirr &amp; Besteck für 6 Personen komplett</div>
+    </div>
+    <div class="ausst-item">
+      <div class="ausst-icon">🚿</div>
+      <div class="ausst-name">Bad &amp; Sanitär</div>
+      <div class="ausst-detail">Raumbad mit Dusche · Kassettentoilette · Warmwasser · beheizte Tanks</div>
+    </div>
+    <div class="ausst-item">
+      <div class="ausst-icon">🌡️</div>
+      <div class="ausst-name">Heizung &amp; Klima</div>
+      <div class="ausst-detail">Truma Standheizung · Klimaanlage im Fahrerhaus · Wintertauglich</div>
+    </div>
+    <div class="ausst-item">
+      <div class="ausst-icon">📺</div>
+      <div class="ausst-name">Entertainment</div>
+      <div class="ausst-detail">TV mit SAT-Anlage · Radio mit Bluetooth/USB · Navi · Rückfahrkamera</div>
+    </div>
+    <div class="ausst-item">
+      <div class="ausst-icon">⛺</div>
+      <div class="ausst-name">Außen</div>
+      <div class="ausst-detail">Markise 4,5m · CEE-Kabeltrommel · Auffahrkeile · GPS-Tracker</div>
+    </div>
+  </div>
+</section>
+
+<!-- MIETBEDINGUNGEN -->
+<section class="bedingungen">
+  <div class="section-tag">Wichtiges</div>
+  <h2 class="section-title">Mietbedingungen.</h2>
+  <div class="bed-grid">
+    <div class="bed-item">
+      <div class="bed-label">Mindestalter</div>
+      <div class="bed-value">25 Jahre</div>
+    </div>
+    <div class="bed-item">
+      <div class="bed-label">Führerschein</div>
+      <div class="bed-value">Klasse B (mind. 3 Jahre)</div>
+    </div>
+    <div class="bed-item">
+      <div class="bed-label">Eingetragene Fahrer</div>
+      <div class="bed-value">Maximal 2</div>
+    </div>
+    <div class="bed-item">
+      <div class="bed-label">Erlaubte Reiseländer</div>
+      <div class="bed-value">EU + EFTA + UK</div>
+    </div>
+    <div class="bed-item">
+      <div class="bed-label">Haustiere</div>
+      <div class="bed-value">Leider nicht erlaubt</div>
+    </div>
+    <div class="bed-item">
+      <div class="bed-label">Übergabe</div>
+      <div class="bed-value">Vilshofen a. d. Donau oder nach Vereinbarung</div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="kontakt" id="kontakt">
+  <div class="section-tag">Jetzt anfragen</div>
+  <h2 class="section-title">Buchungsanfrage.</h2>
+
+  <div class="kontakt-inner">
+    <div class="kontakt-box">
+      <p>Schreib uns mit deinem gewünschten Reisezeitraum, Anzahl der Personen, Reiseziel und einer kurzen Vorstellung inkl. Campingerfahrung. Wir melden uns schnellstmöglich zurück.</p>
+      <div class="kontakt-links">
+        <a href="mailto:bencis+vermietung@gmail.com" class="kontakt-link">
+          <span class="icon">✉️</span>
+          bencis+vermietung@gmail.com
+        </a>
+        <a href="tel:+4915128918103" class="kontakt-link">
+          <span class="icon">📞</span>
+          +49 1512 891 8103
+        </a>
+        <a href="https://www.paulcamper.de/rv/132040" target="_blank" class="kontakt-link">
+          <span class="icon">🏕️</span>
+          Profil auf PaulCamper
+        </a>
+        <a href="https://www.youtube.com/@womosonnenjaeger" target="_blank" class="kontakt-link">
+          <span class="icon">▶️</span>
+          Fahrzeugvideo auf YouTube
+        </a>
+      </div>
+    </div>
+
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">„Von Beginn weg sehr angenehmer und kompetenter Vermieter. Wohnmobil entsprach mehr als den Erwartungen!"</p>
+      <p class="review-author">Christian, Juni 2025 · PaulCamper</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo-text">Der Sonnenjäger 🏹</div>
+  <p>Sunlight A72 · Vilshofen an der Donau · Bayern</p>
+</footer>
+
+</body>
+</html>
