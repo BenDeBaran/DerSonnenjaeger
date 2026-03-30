@@ -427,8 +427,22 @@
   /* KONTAKT */
   .kontakt { background: var(--warm-white); }
 
-  .kontakt-inner {
-    max-width: 600px;
+  .kontakt-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .kontakt-left {
+    max-width: 560px;
+  }
+
+  .kontakt-form {
+    background: white;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 4px;
+    overflow: hidden;
   }
 
   .kontakt-box {
@@ -529,6 +543,7 @@
     .preis-cards, .ausst-grid { grid-template-columns: 1fr; }
     .bed-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 8px; text-align: center; }
+    .kontakt-layout { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -712,34 +727,52 @@
   <div class="section-tag">Jetzt anfragen</div>
   <h2 class="section-title">Buchungsanfrage.</h2>
 
-  <div class="kontakt-inner">
-    <div class="kontakt-box">
-      <p>Schreib uns mit deinem gewünschten Reisezeitraum, Anzahl der Personen, Reiseziel und einer kurzen Vorstellung inkl. Campingerfahrung. Wir melden uns schnellstmöglich zurück.</p>
-      <div class="kontakt-links">
-        <a href="mailto:bencis+vermietung@gmail.com" class="kontakt-link">
-          <span class="icon">✉️</span>
-          bencis+vermietung@gmail.com
-        </a>
-        <a href="tel:+4915128918103" class="kontakt-link">
-          <span class="icon">📞</span>
-          +49 1512 891 8103
-        </a>
-        <a href="https://www.paulcamper.de/rv/132040" target="_blank" class="kontakt-link">
-          <span class="icon">🏕️</span>
-          Profil auf PaulCamper
-        </a>
-        <a href="https://www.youtube.com/@womosonnenjaeger" target="_blank" class="kontakt-link">
-          <span class="icon">▶️</span>
-          Fahrzeugvideo auf YouTube
-        </a>
+  <div class="kontakt-layout">
+
+    <div class="kontakt-left">
+      <div class="kontakt-box">
+        <p>Füll das Formular aus – wir prüfen die Verfügbarkeit und melden uns schnellstmöglich zurück. Die Anfrage ist unverbindlich.</p>
+        <div class="kontakt-links">
+          <a href="mailto:bencis+vermietung@gmail.com" class="kontakt-link">
+            <span class="icon">✉️</span>
+            bencis+vermietung@gmail.com
+          </a>
+          <a href="tel:+4915128918103" class="kontakt-link">
+            <span class="icon">📞</span>
+            +49 1512 891 8103
+          </a>
+          <a href="https://www.paulcamper.de/rv/132040" target="_blank" class="kontakt-link">
+            <span class="icon">🏕️</span>
+            Profil auf PaulCamper
+          </a>
+          <a href="https://www.youtube.com/@womosonnenjaeger" target="_blank" class="kontakt-link">
+            <span class="icon">▶️</span>
+            Fahrzeugvideo auf YouTube
+          </a>
+        </div>
+      </div>
+
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">„Von Beginn weg sehr angenehmer und kompetenter Vermieter. Wohnmobil entsprach mehr als den Erwartungen!"</p>
+        <p class="review-author">Christian, Juni 2025 · PaulCamper</p>
       </div>
     </div>
 
-    <div class="review">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">„Von Beginn weg sehr angenehmer und kompetenter Vermieter. Wohnmobil entsprach mehr als den Erwartungen!"</p>
-      <p class="review-author">Christian, Juni 2025 · PaulCamper</p>
+    <div class="kontakt-form">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfA1C6fijhA3u9hoxN77gerT4eWBRMgs-1qD5h0F4X5vLLp0g/viewform?embedded=true"
+        width="100%"
+        height="1670"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="Buchungsanfrage Sonnenjäger"
+        style="display:block;">
+        Wird geladen…
+      </iframe>
     </div>
+
   </div>
 </section>
 
@@ -747,11 +780,4 @@
 <footer>
   <div class="logo-text">Der Sonnenjäger 🏹</div>
   <p>Sunlight A72 · Vilshofen an der Donau · Bayern</p>
-  <div style="display:flex;gap:20px;">
-    <a href="impressum.html">Impressum</a>
-    <a href="datenschutz.html">Datenschutz</a>
-  </div>
-</footer>
-
-</body>
-</html>
+  <div style="
