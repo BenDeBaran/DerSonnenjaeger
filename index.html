@@ -2,13 +2,12 @@
 <html lang="de">
 <head>
   <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="72821603-ab23-49f3-87b1-591bb2a0f60d" data-blockingmode="auto" type="text/javascript"></script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMFC5XFL3F"></script>
-  <script>
+  <!-- Google tag (gtag.js) – blockiert bis Cookiebot-Einwilligung -->
+  <script type="text/plain" data-cookieconsent="statistics" async src="https://www.googletagmanager.com/gtag/js?id=G-MMFC5XFL3F"></script>
+  <script type="text/plain" data-cookieconsent="statistics">
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
     gtag('config', 'G-MMFC5XFL3F');
   </script>
 <meta charset="UTF-8">
@@ -513,6 +512,15 @@
     color: rgba(255,255,255,0.3);
   }
 
+  footer a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.2s;
+  }
+
+  footer a:hover { color: var(--sun); }
+
   @media (max-width: 768px) {
     nav { padding: 20px 24px; }
     .nav-links { display: none; }
@@ -739,6 +747,10 @@
 <footer>
   <div class="logo-text">Der Sonnenjäger 🏹</div>
   <p>Sunlight A72 · Vilshofen an der Donau · Bayern</p>
+  <div style="display:flex;gap:20px;">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </div>
 </footer>
 
 </body>
