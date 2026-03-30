@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #F5A623; --sun-deep: #E8831A; --forest: #1A3A2A;
+    --cream: #FAF6EE; --warm-white: #FFFDF8; --text: #1A1A1A; --muted: #6B6B5A;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text); }
+  nav {
+    background: var(--forest); display: flex; justify-content: space-between;
+    align-items: center; padding: 20px 48px;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--sun); text-decoration: none; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--sun); }
+  .page-hero { background: var(--forest); padding: 48px 48px 64px; position: relative; }
+  .page-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to bottom, transparent, var(--warm-white)); }
+  .page-tag { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,166,35,0.7); margin-bottom: 12px; }
+  .page-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--cream); line-height: 1.1; }
+  .content { max-width: 800px; margin: 0 auto; padding: 60px 48px 80px; }
+  .content h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--forest); margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--sun); }
+  .content h3 { font-size: 1rem; font-weight: 500; color: var(--forest); margin: 24px 0 8px; }
+  .content p { font-size: 0.9rem; color: #333; line-height: 1.8; margin-bottom: 12px; }
+  .content ul { padding-left: 20px; margin-bottom: 12px; }
+  .content li { font-size: 0.9rem; color: #333; line-height: 1.8; margin-bottom: 4px; }
+  .content a { color: var(--sun-deep); }
+  .content strong { color: var(--forest); }
+  .index-link { color: var(--sun-deep); text-decoration: none; }
+  .index-link:hover { text-decoration: underline; }
+  .seal { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.1); font-size: 0.8rem; color: var(--muted); }
+  .seal a { color: var(--muted); }
+  .info-box { background: var(--cream); border-left: 3px solid var(--sun); padding: 20px 24px; margin: 24px 0; border-radius: 0 4px 4px 0; }
+  .info-box p { margin: 0; font-size: 0.9rem; }
+  footer { background: var(--forest); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); }
+  footer .logo-text { font-family: 'Playfair Display', serif; color: var(--sun); font-size: 1rem; }
+  footer p { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+  footer a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.8rem; }
+  footer a:hover { color: var(--sun); }
+  @media (max-width: 768px) {
+    nav, .page-hero, .content, footer { padding-left: 24px; padding-right: 24px; }
+    .nav-links { display: none; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+<title>Impressum – Der Sonnenjäger</title>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Der Sonnenjäger</a>
+  <ul class="nav-links">
+    <li><a href="index.html#preise">Preise</a></li>
+    <li><a href="index.html#verfuegbarkeit">Verfügbarkeit</a></li>
+    <li><a href="index.html#ausstattung">Ausstattung</a></li>
+    <li><a href="index.html#kontakt">Anfrage</a></li>
+  </ul>
+</nav>
+<div class="page-hero">
+  <div class="page-tag">Rechtliches</div>
+  <h1 class="page-title">Impressum.</h1>
+</div>
+
+<div class="content">
+  <h2 id="angaben">Angaben gemäß § 5 TMG</h2>
+  <p>Benjamin u. Bianca Cisneros Loret de Mola<br>
+  Am Fuchsberg 3<br>
+  94501 Aidenbach<br>
+  Deutschland</p>
+
+  <h2 id="kontakt">Kontakt</h2>
+  <p>Telefon: +49 1512 891 8103<br>
+  E-Mail: <a href="mailto:bencis+vermietung@gmail.com">bencis+vermietung@gmail.com</a></p>
+
+  <h2 id="hinweis">Hinweis zur gewerblichen Tätigkeit</h2>
+  <p>Die Vermietung des Wohnmobils „Der Sonnenjäger" erfolgt als private Kleinvermietung. 
+  Es besteht keine Pflicht zur Eintragung ins Handelsregister.</p>
+
+  <h2 id="streitschlichtung">EU-Streitschlichtung</h2>
+  <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: 
+  <a href="https://ec.europa.eu/consumers/odr/" target="_blank">https://ec.europa.eu/consumers/odr/</a>.<br>
+  Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+
+  <h2 id="verbraucherstreit">Verbraucherstreitbeilegung</h2>
+  <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer 
+  Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+  <div class="info-box">
+    <p>Datenschutzrechtliche Informationen finden Sie in unserer 
+    <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+  </div>
+</div>
+<footer>
+  <div class="logo-text">Der Sonnenjäger 🏹</div>
+  <p>Sunlight A72 · Vilshofen an der Donau · Bayern</p>
+  <div style="display:flex;gap:20px;">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </div>
+</footer>
+</body>
+</html>
