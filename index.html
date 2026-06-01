@@ -298,7 +298,7 @@
     border-radius: 50%;
     border: none;
     background: rgba(255,255,255,0.4);
-    cursor: pointer
+    cursor: pointer;
     padding: 0;
     transition: all 0.2s;
   }
@@ -462,46 +462,67 @@
     border: none;
   }
 
-  /* GALERIE */
-  .galerie { background: var(--warm-white); }
+  /* NEUESTE ABENTEUER (Behold-Feed, eigen gerendert) */
+  .abenteuer { background: var(--warm-white); }
+  .abenteuer-feed { max-width: 1100px; }
 
-  .galerie-grid {
+  .abenteuer-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .ab-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--sun); }
+  .ab-user { font-weight: 500; color: var(--forest); text-decoration: none; }
+  .ab-user:hover { color: var(--sun-deep); }
+  .btn-follow {
+    margin-left: auto;
+    background: var(--forest);
+    color: var(--cream);
+    padding: 8px 18px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .btn-follow:hover { background: var(--forest-mid); }
+
+  .feed-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
   }
-
-  .galerie-item {
+  .feed-card {
     position: relative;
-    aspect-ratio: 4 / 3;
-    border-radius: 4px;
+    aspect-ratio: 1 / 1;
+    border: none;
+    padding: 0;
+    border-radius: 6px;
     overflow: hidden;
     cursor: pointer;
     background: var(--cream);
   }
-
-  .galerie-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
+  .feed-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+  .feed-card:hover img { transform: scale(1.05); }
+  .feed-badge {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    color: #fff;
+    font-size: 0.9rem;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   }
 
-  .galerie-item:hover img { transform: scale(1.05); }
-
-  .galerie-item.placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: linear-gradient(135deg, var(--cream), #efe7d6);
-    color: var(--muted);
-    cursor: default;
+  .feed-empty {
+    text-align: center;
+    padding: 56px 24px;
+    border: 1px dashed rgba(26,58,42,0.25);
+    border-radius: 8px;
+    background: var(--cream);
   }
-  .galerie-item.placeholder .ph-icon { font-size: 1.8rem; opacity: 0.6; }
-  .galerie-item.placeholder .ph-text { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .feed-empty-icon { font-size: 2rem; margin-bottom: 12px; }
+  .feed-empty p { color: var(--muted); margin-bottom: 20px; }
 
   /* LIGHTBOX */
   .lightbox {
@@ -509,41 +530,27 @@
     inset: 0;
     background: rgba(10,20,15,0.92);
     display: none;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    padding: 24px;
+    padding: 32px 24px;
   }
   .lightbox.open { display: flex; }
-  .lightbox img {
-    max-width: 90vw;
-    max-height: 85vh;
-    border-radius: 6px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-  }
+  .lightbox-stage { display: flex; flex-direction: column; align-items: center; gap: 14px; max-width: 90vw; }
+  .lightbox-stage img, .lightbox-stage video { max-width: 90vw; max-height: 78vh; border-radius: 6px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+  .lb-caption { color: rgba(255,255,255,0.85); font-size: 0.9rem; max-width: 640px; text-align: center; line-height: 1.6; }
+  .lb-link { color: var(--sun); text-decoration: none; font-size: 0.85rem; }
+  .lb-link:hover { text-decoration: underline; }
   .lightbox-close {
-    position: absolute;
-    top: 24px;
-    right: 28px;
-    font-size: 2rem;
-    color: var(--cream);
-    cursor: pointer;
-    line-height: 1;
-    background: none;
-    border: none;
+    position: absolute; top: 20px; right: 26px;
+    font-size: 2rem; color: var(--cream); cursor: pointer;
+    line-height: 1; background: none; border: none;
   }
   .lightbox-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255,255,255,0.1);
-    border: none;
-    color: var(--cream);
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    font-size: 1.4rem;
-    cursor: pointer;
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.1); border: none; color: var(--cream);
+    width: 48px; height: 48px; border-radius: 50%; font-size: 1.4rem; cursor: pointer;
   }
   .lightbox-nav.prev { left: 24px; }
   .lightbox-nav.next { right: 24px; }
@@ -710,7 +717,7 @@
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
     .preis-cards, .ausst-grid { grid-template-columns: 1fr; }
     .bed-grid { grid-template-columns: 1fr; }
-    .galerie-grid { grid-template-columns: repeat(2, 1fr); }
+    .feed-grid { grid-template-columns: repeat(2, 1fr); }
     footer { flex-direction: column; gap: 8px; text-align: center; }
   }
 </style>
@@ -747,22 +754,25 @@ const DATA = {
     { icon: "⛺", name: "Außen",          detail: "Markise 4,5m · CEE-Kabeltrommel · Auffahrkeile · GPS-Tracker" },
   ],
 
-  // Fotos für Hero-Roll UND Galerie.
-  // Dateien einfach in den Ordner /img/ hochladen (squoosh-komprimiert).
+  // Statische Hero-Fotos – kuratiert, aus dem Git-Repo /img/.
+  // (Der "Neueste Abenteuer"-Feed weiter unten kommt separat aus Behold/Instagram.)
+  // Dateien in den Ordner /img/ hochladen (squoosh-komprimiert).
   // Solange eine Datei fehlt, wird automatisch ein Platzhalter angezeigt.
-  fotos: [
-    { src: "img/aussen-1.jpg", alt: "Sunlight A72 – Außenansicht" },
-    { src: "img/wohnraum.jpg", alt: "Wohnraum mit Sitzgruppe" },
-    { src: "img/kueche.jpg",   alt: "Küche" },
-    { src: "img/alkoven.jpg",  alt: "Alkoven-Schlafbereich" },
-    { src: "img/bad.jpg",      alt: "Bad mit Dusche" },
-    { src: "img/aussen-2.jpg", alt: "Mit ausgefahrener Markise" },
+  heroFotos: [
+    { src: "img/Sunlight1.jpg", alt: "Sunlight A72 - Außenansicht" },
+    { src: "img/Sunlight2.jpg", alt: "Grundriss" },
+    { src: "img/Sunlight5.jpg",   alt: "Sunlight A72 - Rückenansicht" },
+    { src: "img/Sunlight3.jpg",  alt: "Wohnraum" },
   ],
 
   // Bewertungen
   reviews: [
     { text: "Von Beginn weg sehr angenehmer und kompetenter Vermieter. Wohnmobil entsprach mehr als den Erwartungen!", author: "Christian, Juni 2025 · PaulCamper" },
   ],
+
+  // "Neueste Abenteuer"-Feed – JSON-Feed aus Behold (spiegelt das Instagram-Konto).
+  // Leerer Feed -> es wird automatisch ein "bald geht's los"-Zustand gezeigt.
+  abenteuerFeed: "https://feeds.behold.so/Lt8p5jHu4WG4mLOlQUVV",
 };
 </script>
 
@@ -773,7 +783,7 @@ const DATA = {
     <ul class="nav-links">
       <li><a href="#preise">Preise</a></li>
       <li><a href="#verfuegbarkeit">Verfügbarkeit</a></li>
-      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#abenteuer">Abenteuer</a></li>
       <li><a href="#ausstattung">Ausstattung</a></li>
       <li><a href="#kontakt">Anfrage</a></li>
     </ul>
@@ -844,13 +854,11 @@ const DATA = {
   <p style="margin-top:16px; font-size:0.82rem; color:var(--muted);">🟢 Verfügbar &nbsp;&nbsp; 🔴 Nicht verfügbar &nbsp;&nbsp; Anfragen bitte per E-Mail mit gewünschtem Reisezeitraum.</p>
 </section>
 
-<!-- GALERIE -->
-<section class="galerie" id="galerie">
-  <div class="section-tag">Einblicke</div>
-  <h2 class="section-title">Galerie.</h2>
-  <div class="galerie-grid" id="galerieGrid"></div>
-  <!-- Hinweis: Hier könnte später optional ein Instagram-Feed ergänzt werden
-       (erfordert Business-/Creator-Konto + Drittanbieter-Widget). -->
+<!-- NEUESTE ABENTEUER (Instagram via Behold JSON-Feed, eigen gerendert) -->
+<section class="abenteuer" id="abenteuer">
+  <div class="section-tag">Unterwegs</div>
+  <h2 class="section-title">Die neuesten Abenteuer<br>des Sonnenjägers.</h2>
+  <div class="abenteuer-feed" id="abenteuerFeed"><!-- wird per JS aus dem Behold-Feed gefüllt --></div>
 </section>
 
 <!-- AUSSTATTUNG -->
@@ -930,12 +938,12 @@ const DATA = {
   <p>Sunlight A72 · Vilshofen an der Donau · Bayern</p>
 </footer>
 
-<!-- LIGHTBOX -->
+<!-- LIGHTBOX (für den Abenteuer-Feed) -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lbClose" aria-label="Schließen">×</button>
-  <button class="lightbox-nav prev" id="lbPrev" aria-label="Vorheriges Foto">‹</button>
-  <img id="lbImg" src="" alt="">
-  <button class="lightbox-nav next" id="lbNext" aria-label="Nächstes Foto">›</button>
+  <button class="lightbox-nav prev" id="lbPrev" aria-label="Vorheriger Beitrag">‹</button>
+  <div class="lightbox-stage" id="lbStage"></div>
+  <button class="lightbox-nav next" id="lbNext" aria-label="Nächster Beitrag">›</button>
 </div>
 
 <!-- ============================================================= -->
@@ -981,7 +989,7 @@ const DATA = {
   // --- Hero-Carousel ---
   const track = document.getElementById('heroTrack');
   const dotsWrap = document.getElementById('heroDots');
-  const fotos = DATA.fotos;
+  const fotos = DATA.heroFotos;
 
   track.innerHTML = fotos.map(f => `
     <div class="slide">
@@ -1020,48 +1028,101 @@ const DATA = {
     const dx = e.changedTouches[0].clientX - startX;
     if (Math.abs(dx) > 40) { go(dx < 0 ? idx + 1 : idx - 1); restart(); }
   }, { passive: true });
+})();
+</script>
 
-  // --- Galerie ---
-  const grid = document.getElementById('galerieGrid');
-  grid.innerHTML = fotos.map((f, i) => `
-    <div class="galerie-item" data-i="${i}">
-      <img src="${esc(f.src)}" alt="${esc(f.alt)}"
-           onerror="const it=this.closest('.galerie-item'); it.classList.add('placeholder'); it.removeAttribute('data-i');
-                    it.innerHTML='<div class=&quot;ph-icon&quot;>📷</div><div class=&quot;ph-text&quot;>Foto folgt</div>';">
-    </div>`).join('');
+<!-- ABENTEUER-FEED  –  holt den Behold-JSON-Feed und rendert ihn im Seiten-Design -->
+<script>
+(function () {
+  const wrap = document.getElementById('abenteuerFeed');
+  if (!wrap) return;
+
+  const escA = s => String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  function igUrl(user){ return 'https://www.instagram.com/' + encodeURIComponent(user) + '/'; }
+
+  function emptyState(user){
+    return `<div class="feed-empty">
+      <div class="feed-empty-icon">🧭</div>
+      <p>Die ersten Abenteuer sind bald hier zu sehen.</p>
+      <a class="btn-follow" href="${igUrl(user)}" target="_blank" rel="noopener">Auf Instagram folgen</a>
+    </div>`;
+  }
+
+  // beste verfügbare Bildgröße wählen
+  function pickSize(p, order){
+    const sz = p.sizes || {};
+    for (const k of order){ if (sz[k] && sz[k].mediaUrl) return sz[k].mediaUrl; }
+    return p.thumbnailUrl || p.mediaUrl || '';
+  }
+  const thumbOf = p => pickSize(p, ['medium','large','small','full']);
+  const fullOf  = p => pickSize(p, ['large','full','medium']);
+
+  let posts = [];
+
+  function cardHtml(p, i){
+    const isVideo = p.mediaType === 'VIDEO';
+    const isAlbum = p.mediaType === 'CAROUSEL_ALBUM';
+    const badge = isVideo ? '▶' : (isAlbum ? '▦' : '');
+    return `<button class="feed-card" data-i="${i}" aria-label="Beitrag öffnen">
+        <img src="${escA(thumbOf(p))}" alt="${escA(p.caption || 'Instagram-Beitrag')}" loading="lazy">
+        ${badge ? `<span class="feed-badge">${badge}</span>` : ''}
+      </button>`;
+  }
+
+  function render(feed){
+    const user = feed.username || 'womo_dersonnenjaeger';
+    posts = Array.isArray(feed.posts) ? feed.posts : [];
+    if (!posts.length){ wrap.innerHTML = emptyState(user); return; }
+
+    const head = `<div class="abenteuer-head">
+        ${feed.profilePictureUrl ? `<img class="ab-avatar" src="${escA(feed.profilePictureUrl)}" alt="">` : ''}
+        <a class="ab-user" href="${igUrl(user)}" target="_blank" rel="noopener">@${escA(user)}</a>
+        <a class="btn-follow" href="${igUrl(user)}" target="_blank" rel="noopener">Folgen</a>
+      </div>`;
+    wrap.innerHTML = head + `<div class="feed-grid">${posts.map(cardHtml).join('')}</div>`;
+  }
 
   // --- Lightbox ---
   const lb = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lbImg');
+  const stage = document.getElementById('lbStage');
   let lbIdx = 0;
-  function openLb(i) {
-    lbIdx = i;
-    lbImg.src = fotos[i].src;
-    lbImg.alt = fotos[i].alt;
+
+  function showLb(i){
+    lbIdx = (i + posts.length) % posts.length;
+    const p = posts[lbIdx];
+    const caption = p.caption ? `<p class="lb-caption">${escA(p.caption)}</p>` : '';
+    const link = p.permalink ? `<a class="lb-link" href="${escA(p.permalink)}" target="_blank" rel="noopener">Auf Instagram ansehen ↗</a>` : '';
+    if (p.mediaType === 'VIDEO'){
+      stage.innerHTML = `<video src="${escA(p.mediaUrl)}" poster="${escA(p.thumbnailUrl || thumbOf(p))}" controls autoplay playsinline></video>${caption}${link}`;
+    } else {
+      stage.innerHTML = `<img src="${escA(fullOf(p))}" alt="${escA(p.caption || '')}">${caption}${link}`;
+    }
     lb.classList.add('open');
   }
-  function lbGo(n) {
-    // nur über Items springen, die tatsächlich ein Bild haben
-    const valid = [...grid.querySelectorAll('.galerie-item[data-i]')].map(el => +el.dataset.i);
-    if (!valid.length) return;
-    let pos = valid.indexOf(lbIdx);
-    pos = (pos + n + valid.length) % valid.length;
-    openLb(valid[pos]);
-  }
-  grid.addEventListener('click', e => {
-    const item = e.target.closest('.galerie-item[data-i]');
-    if (item) openLb(+item.dataset.i);
+  function closeLb(){ lb.classList.remove('open'); stage.innerHTML = ''; }
+
+  wrap.addEventListener('click', e => {
+    const card = e.target.closest('.feed-card[data-i]');
+    if (card) showLb(+card.dataset.i);
   });
-  document.getElementById('lbClose').onclick = () => lb.classList.remove('open');
-  document.getElementById('lbPrev').onclick = () => lbGo(-1);
-  document.getElementById('lbNext').onclick = () => lbGo(1);
-  lb.addEventListener('click', e => { if (e.target === lb) lb.classList.remove('open'); });
+  document.getElementById('lbClose').onclick = closeLb;
+  document.getElementById('lbPrev').onclick = () => showLb(lbIdx - 1);
+  document.getElementById('lbNext').onclick = () => showLb(lbIdx + 1);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
   document.addEventListener('keydown', e => {
     if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') lb.classList.remove('open');
-    if (e.key === 'ArrowLeft') lbGo(-1);
-    if (e.key === 'ArrowRight') lbGo(1);
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') showLb(lbIdx - 1);
+    if (e.key === 'ArrowRight') showLb(lbIdx + 1);
   });
+
+  // --- Feed laden ---
+  fetch(DATA.abenteuerFeed, { cache: 'no-store' })
+    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(render)
+    .catch(() => { wrap.innerHTML = emptyState('womo_dersonnenjaeger'); });
 })();
 </script>
 
