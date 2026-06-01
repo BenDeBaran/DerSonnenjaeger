@@ -20,7 +20,7 @@
 <meta property="og:title" content="Der Sonnenjäger – Sunlight A72 Wohnmobil mieten">
 <meta property="og:description" content="Familienwohnmobil (Alkoven, 6 Personen) zu mieten in Vilshofen an der Donau. Vollausstattung, faire Preise, 4,9★ auf PaulCamper.">
 <meta property="og:url" content="https://dersonnenjaeger.de/">
-<meta property="og:image" content="https://dersonnenjaeger.de/img/aussen-1.jpg">
+<meta property="og:image" content="https://dersonnenjaeger.de/img/Sunlight1.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -360,6 +360,36 @@
   /* PREISE */
   .preise { background: var(--cream); }
 
+  .aktion-banner {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    background: var(--forest);
+    border-radius: 6px;
+    padding: 18px 24px;
+    margin-bottom: 36px;
+  }
+  .aktion-pill {
+    background: var(--sun);
+    color: var(--forest);
+    font-weight: 500;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .aktion-banner p {
+    margin: 0;
+    flex: 1;
+    min-width: 240px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.82);
+  }
+
   .preis-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -621,8 +651,19 @@
   /* KONTAKT */
   .kontakt { background: var(--warm-white); }
 
-  .kontakt-inner {
-    max-width: 600px;
+  .kontakt-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .kontakt-right {
+    max-width: 560px;
+  }
+
+  .kontakt-form {
+    overflow: hidden;
   }
 
   .kontakt-box {
@@ -706,6 +747,15 @@
     color: rgba(255,255,255,0.3);
   }
 
+  footer a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.2s;
+  }
+  footer a:hover { color: var(--sun); }
+  .footer-links { display: flex; gap: 20px; }
+
   @media (max-width: 900px) {
     .hero-content { grid-template-columns: 1fr; gap: 36px; }
     .hero-media { max-width: 520px; }
@@ -719,6 +769,7 @@
     .preis-cards, .ausst-grid { grid-template-columns: 1fr; }
     .bed-grid { grid-template-columns: 1fr; }
     .feed-grid { grid-template-columns: repeat(2, 1fr); }
+    .kontakt-layout { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 8px; text-align: center; }
   }
 </style>
@@ -736,6 +787,12 @@ const DATA = {
     { saison: "Nebensaison", preis: 99, zeitraum: "April – Juni & September – Oktober", featured: true },
     { saison: "Hauptsaison", preis: 105, zeitraum: "Juli – August + Ferien" },
   ],
+
+  // Aktions-Hinweis über den Preisen. Auf null setzen, um die Aktion zu beenden.
+  aktion: {
+    label: "Spritpreis-Aktion 2026",
+    text: "Wegen der aktuell hohen Spritpreise haben wir unsere Tagesmieten gesenkt – sichere dir jetzt die reduzierten Aktionspreise.",
+  },
 
   // Eckdaten unter dem Hero
   eckdaten: [
@@ -762,13 +819,8 @@ const DATA = {
   heroFotos: [
     { src: "img/Sunlight1.jpg", alt: "Sunlight A72 – Außenansicht" },
     { src: "img/Sunlight2.jpg", alt: "Sunlight A72 – Grundriss" },
-    { src: "img/Sunlight5.jpg",   alt: "Sunlight A72 – Rückenansicht" },
-    { src: "img/Sunlight3.jpg",  alt: "Sunlight A72 – Innenraum" },
-  ],
-
-  // Bewertungen
-  reviews: [
-    { text: "Von Beginn weg sehr angenehmer und kompetenter Vermieter. Wohnmobil entsprach mehr als den Erwartungen!", author: "Christian, Juni 2025 · PaulCamper" },
+    { src: "img/Sunlight5.jpg", alt: "Sunlight A72 – Rückenansicht" },
+    { src: "img/Sunlight3.jpg", alt: "Sunlight A72 – Innenraum" },
   ],
 
   // "Neueste Abenteuer"-Feed – JSON-Feed aus Behold (spiegelt das Instagram-Konto).
@@ -820,8 +872,10 @@ const DATA = {
 
 <!-- PREISE -->
 <section class="preise" id="preise">
-  <div class="section-tag">Mietpreise 2026</div>
+  <div class="section-tag">Spritpreis-Aktion 2026</div>
   <h2 class="section-title">Einfache, transparente<br>Preise.</h2>
+
+  <div id="aktionBanner"></div>
 
   <div class="preis-cards" id="preisCards"></div>
 
@@ -836,7 +890,7 @@ const DATA = {
     </div>
     <div class="info-item">
       <span class="info-label">Mindestmietdauer</span>
-      <span class="info-value">7 Tage</span>
+      <span class="info-value">5 Tage</span>
     </div>
     <div class="info-item">
       <span class="info-label">Versicherung</span>
@@ -906,37 +960,65 @@ const DATA = {
   <div class="section-tag">Jetzt anfragen</div>
   <h2 class="section-title">Buchungsanfrage.</h2>
 
-  <div class="kontakt-inner">
-    <div class="kontakt-box">
-      <p>Schreib uns mit deinem gewünschten Reisezeitraum, Anzahl der Personen, Reiseziel und einer kurzen Vorstellung inkl. Campingerfahrung. Wir melden uns schnellstmöglich zurück.</p>
-      <div class="kontakt-links">
-        <a href="mailto:buchung@dersonnenjaeger.de" class="kontakt-link">
-          <span class="icon">✉️</span>
-          buchung@dersonnenjaeger.de
-        </a>
-        <a href="tel:+4915128918103" class="kontakt-link">
-          <span class="icon">📞</span>
-          +49 1512 891 8103
-        </a>
-        <a href="https://www.paulcamper.de/rv/132040" target="_blank" class="kontakt-link">
-          <span class="icon">🏕️</span>
-          Profil auf PaulCamper
-        </a>
-        <a href="https://www.youtube.com/@womosonnenjaeger" target="_blank" class="kontakt-link">
-          <span class="icon">▶️</span>
-          Fahrzeugvideo auf YouTube
-        </a>
-      </div>
+  <div class="kontakt-layout">
+
+    <div class="kontakt-form">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfA1C6fijhA3u9hoxN77gerT4eWBRMgs-1qD5h0F4X5vLLp0g/viewform?embedded=true"
+        width="100%"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="Buchungsanfrage Sonnenjäger"
+        style="display:block; min-height: 1800px;">
+        Wird geladen…
+      </iframe>
     </div>
 
-    <div id="reviews"></div>
+    <div class="kontakt-right">
+      <div class="kontakt-box">
+        <p>Füll das Formular aus – wir prüfen die Verfügbarkeit und melden uns schnellstmöglich zurück. Die Anfrage ist unverbindlich.</p>
+        <div class="kontakt-links">
+          <a href="mailto:buchung@dersonnenjaeger.de" class="kontakt-link">
+            <span class="icon">✉️</span>
+            buchung@dersonnenjaeger.de
+          </a>
+          <a href="tel:+4915128918103" class="kontakt-link">
+            <span class="icon">📞</span>
+            +49 1512 891 8103
+          </a>
+          <a href="https://www.paulcamper.de/rv/132040" target="_blank" class="kontakt-link">
+            <span class="icon">🏕️</span>
+            Profil auf PaulCamper
+          </a>
+          <a href="https://www.youtube.com/@womosonnenjaeger" target="_blank" class="kontakt-link">
+            <span class="icon">▶️</span>
+            Fahrzeugvideo auf YouTube
+          </a>
+        </div>
+      </div>
+
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">„Von Beginn weg sehr angenehmer und kompetenter Vermieter. Wohnmobil entsprach mehr als den Erwartungen!"</p>
+        <p class="review-author">Christian, Juni 2025 · PaulCamper</p>
+      </div>
+    </div>
   </div>
 </section>
+
+<!-- Hinweis: Die Höhe des Google-Form-iframes wird über das feste min-height
+     gesteuert. Ein automatisches Nachführen ist nicht möglich, da Google Forms
+     cross-origin läuft (Browser blockiert den Zugriff auf fremde iframe-Inhalte). -->
 
 <!-- FOOTER -->
 <footer>
   <div class="logo-text">Der Sonnenjäger 🏹</div>
   <p>Sunlight A72 · Vilshofen an der Donau · Bayern</p>
+  <div class="footer-links">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </div>
 </footer>
 
 <!-- LIGHTBOX (für den Abenteuer-Feed) -->
@@ -962,6 +1044,16 @@ const DATA = {
       <div class="stat-label">${esc(s.label)}</div>
     </div>`).join('');
 
+  // --- Aktions-Banner ---
+  const aktionEl = document.getElementById('aktionBanner');
+  if (aktionEl) {
+    aktionEl.innerHTML = DATA.aktion ? `
+      <div class="aktion-banner">
+        <span class="aktion-pill">${esc(DATA.aktion.label)}</span>
+        <p>${esc(DATA.aktion.text)}</p>
+      </div>` : '';
+  }
+
   // --- Preise ---
   document.getElementById('preisCards').innerHTML = DATA.preise.map(p => `
     <div class="preis-card${p.featured ? ' featured' : ''}">
@@ -977,14 +1069,6 @@ const DATA = {
       <div class="ausst-icon">${a.icon}</div>
       <div class="ausst-name">${esc(a.name)}</div>
       <div class="ausst-detail">${esc(a.detail)}</div>
-    </div>`).join('');
-
-  // --- Reviews ---
-  document.getElementById('reviews').innerHTML = DATA.reviews.map(r => `
-    <div class="review">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">„${esc(r.text)}"</p>
-      <p class="review-author">${esc(r.author)}</p>
     </div>`).join('');
 
   // --- Hero-Carousel ---
