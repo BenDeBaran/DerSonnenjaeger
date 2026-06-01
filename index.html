@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="72821603-ab23-49f3-87b1-591bb2a0f60d" data-blockingmode="auto" type="text/javascript"></script>
-  <!-- Google tag (gtag.js) – blockiert bis Cookiebot-Einwilligung -->
-  <script type="text/plain" data-cookieconsent="statistics" async src="https://www.googletagmanager.com/gtag/js?id=G-MMFC5XFL3F"></script>
-  <script type="text/plain" data-cookieconsent="statistics">
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-MMFC5XFL3F');
-  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MMFC5XFL3F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MMFC5XFL3F');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Der Sonnenjäger – Sunlight A72 Wohnmobil mieten</title>
+
+<!-- SEO / Social -->
+<meta name="description" content="Der Sonnenjäger – vollausgestattetes Sunlight A72 Alkoven-Wohnmobil für bis zu 6 Personen, zu mieten in Vilshofen an der Donau. Standheizung, SAT-TV, Rückfahrkamera. Ab 100 €/Tag.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Der Sonnenjäger – Sunlight A72 Wohnmobil mieten">
+<meta property="og:description" content="Familienwohnmobil (Alkoven, 6 Personen) zu mieten in Vilshofen an der Donau. Vollausstattung, faire Preise, 4,9★ auf PaulCamper.">
+<meta property="og:url" content="https://dersonnenjaeger.de/">
+<meta property="og:image" content="https://dersonnenjaeger.de/img/aussen-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -102,9 +111,10 @@
   .nav-links a:hover { color: var(--sun); }
 
   .hero-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
     padding: 0 48px;
     position: relative;
     z-index: 10;
@@ -203,6 +213,96 @@
   }
 
   .btn-secondary:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+  /* HERO FOTO-ROLL */
+  .hero-media { position: relative; z-index: 10; }
+
+  .carousel {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.5);
+    border: 1px solid rgba(245,166,35,0.25);
+    background: var(--forest-mid);
+  }
+
+  .carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .slide {
+    position: relative;
+    min-width: 100%;
+    height: 100%;
+  }
+
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Platzhalter, solange noch keine Fotos im /img/-Ordner liegen */
+  .slide.placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--forest-mid), var(--forest));
+    color: rgba(255,255,255,0.45);
+  }
+  .slide.placeholder .ph-icon { font-size: 2.4rem; opacity: 0.7; }
+  .slide.placeholder .ph-text { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(26,58,42,0.7);
+    color: var(--cream);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 3;
+  }
+  .carousel-btn:hover { background: var(--sun); color: var(--forest); }
+  .carousel-btn.prev { left: 12px; }
+  .carousel-btn.next { right: 12px; }
+
+  .carousel-dots {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    z-index: 3;
+  }
+  .carousel-dots button {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.4);
+    cursor: pointer
+    padding: 0;
+    transition: all 0.2s;
+  }
+  .carousel-dots button.active { background: var(--sun); width: 22px; border-radius: 4px; }
 
   .hero-stats {
     display: grid;
@@ -362,6 +462,92 @@
     border: none;
   }
 
+  /* GALERIE */
+  .galerie { background: var(--warm-white); }
+
+  .galerie-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .galerie-item {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--cream);
+  }
+
+  .galerie-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .galerie-item:hover img { transform: scale(1.05); }
+
+  .galerie-item.placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--cream), #efe7d6);
+    color: var(--muted);
+    cursor: default;
+  }
+  .galerie-item.placeholder .ph-icon { font-size: 1.8rem; opacity: 0.6; }
+  .galerie-item.placeholder .ph-text { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* LIGHTBOX */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,20,15,0.92);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 24px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 85vh;
+    border-radius: 6px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    font-size: 2rem;
+    color: var(--cream);
+    cursor: pointer;
+    line-height: 1;
+    background: none;
+    border: none;
+  }
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: var(--cream);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+  .lightbox-nav.prev { left: 24px; }
+  .lightbox-nav.next { right: 24px; }
+
   /* AUSSTATTUNG */
   .ausstattung { background: var(--forest); color: white; }
   .ausstattung .section-title { color: var(--cream); }
@@ -427,22 +613,8 @@
   /* KONTAKT */
   .kontakt { background: var(--warm-white); }
 
-  .kontakt-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: start;
-  }
-
-  .kontakt-right {
-    max-width: 560px;
-  }
-
-  .kontakt-form {
-    /*background: white;*/
-    /*border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 4px;*/
-    overflow: hidden;
+  .kontakt-inner {
+    max-width: 600px;
   }
 
   .kontakt-box {
@@ -526,14 +698,10 @@
     color: rgba(255,255,255,0.3);
   }
 
-  footer a {
-    color: rgba(255,255,255,0.5);
-    text-decoration: none;
-    font-size: 0.8rem;
-    transition: color 0.2s;
+  @media (max-width: 900px) {
+    .hero-content { grid-template-columns: 1fr; gap: 36px; }
+    .hero-media { max-width: 520px; }
   }
-
-  footer a:hover { color: var(--sun); }
 
   @media (max-width: 768px) {
     nav { padding: 20px 24px; }
@@ -542,12 +710,61 @@
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
     .preis-cards, .ausst-grid { grid-template-columns: 1fr; }
     .bed-grid { grid-template-columns: 1fr; }
+    .galerie-grid { grid-template-columns: repeat(2, 1fr); }
     footer { flex-direction: column; gap: 8px; text-align: center; }
-    .kontakt-layout { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
+
+<!-- ============================================================= -->
+<!--  ZENTRALE DATEN  –  hier (und NUR hier) Inhalte pflegen        -->
+<!-- ============================================================= -->
+<script>
+const DATA = {
+  // Mietpreise – "featured: true" hebt eine Karte hervor (dunkelgrün)
+  preise: [
+    { saison: "Sparsaison",  preis: 89, zeitraum: "November – März" },
+    { saison: "Nebensaison", preis: 99, zeitraum: "April – Juni & September – Oktober", featured: true },
+    { saison: "Hauptsaison", preis: 105, zeitraum: "Juli – August + Ferien" },
+  ],
+
+  // Eckdaten unter dem Hero
+  eckdaten: [
+    { value: "6",     label: "Schlafplätze" },
+    { value: "7,23m", label: "Fahrzeuglänge" },
+    { value: "4,9★",  label: "PaulCamper" },
+    { value: "2018",  label: "Baujahr" },
+  ],
+
+  // Ausstattung
+  ausstattung: [
+    { icon: "🛏️", name: "Schlafplätze",   detail: "Alkoven 160×200 cm · Heckbett 90×200 cm · Sitzgruppe umbaubar 120×175 cm" },
+    { icon: "🍳", name: "Küche",          detail: "3-Flammen-Gasherd · Kühlschrank mit Gefrierfach · Geschirr & Besteck für 6 Personen komplett" },
+    { icon: "🚿", name: "Bad & Sanitär",  detail: "Raumbad mit Dusche · Kassettentoilette · Warmwasser · beheizte Tanks" },
+    { icon: "🌡️", name: "Heizung & Klima", detail: "Truma Standheizung · Klimaanlage im Fahrerhaus · Wintertauglich" },
+    { icon: "📺", name: "Entertainment",  detail: "TV mit SAT-Anlage · Radio mit Bluetooth/USB · Navi · Rückfahrkamera" },
+    { icon: "⛺", name: "Außen",          detail: "Markise 4,5m · CEE-Kabeltrommel · Auffahrkeile · GPS-Tracker" },
+  ],
+
+  // Fotos für Hero-Roll UND Galerie.
+  // Dateien einfach in den Ordner /img/ hochladen (squoosh-komprimiert).
+  // Solange eine Datei fehlt, wird automatisch ein Platzhalter angezeigt.
+  fotos: [
+    { src: "img/aussen-1.jpg", alt: "Sunlight A72 – Außenansicht" },
+    { src: "img/wohnraum.jpg", alt: "Wohnraum mit Sitzgruppe" },
+    { src: "img/kueche.jpg",   alt: "Küche" },
+    { src: "img/alkoven.jpg",  alt: "Alkoven-Schlafbereich" },
+    { src: "img/bad.jpg",      alt: "Bad mit Dusche" },
+    { src: "img/aussen-2.jpg", alt: "Mit ausgefahrener Markise" },
+  ],
+
+  // Bewertungen
+  reviews: [
+    { text: "Von Beginn weg sehr angenehmer und kompetenter Vermieter. Wohnmobil entsprach mehr als den Erwartungen!", author: "Christian, Juni 2025 · PaulCamper" },
+  ],
+};
+</script>
 
 <!-- HERO -->
 <section class="hero">
@@ -556,43 +773,38 @@
     <ul class="nav-links">
       <li><a href="#preise">Preise</a></li>
       <li><a href="#verfuegbarkeit">Verfügbarkeit</a></li>
+      <li><a href="#galerie">Galerie</a></li>
       <li><a href="#ausstattung">Ausstattung</a></li>
       <li><a href="#kontakt">Anfrage</a></li>
     </ul>
   </nav>
 
   <div class="hero-content">
-    <div class="hero-badge">
-      <div class="dot"></div>
-      <span>Sunlight A72 · Vilshofen a. d. Donau</span>
+    <div class="hero-text">
+      <div class="hero-badge">
+        <div class="dot"></div>
+        <span>Sunlight A72 · Vilshofen a. d. Donau</span>
+      </div>
+      <h1 class="hero-title">Der<br><span class="accent">Sonnenjäger</span></h1>
+      <p class="hero-subtitle">Familienwohnmobil · Alkoven · 6 Personen</p>
+      <p class="hero-desc">Ein vollausgestattetes Alkoven-Wohnmobil für Familien mit bis zu 6 Personen. Standheizung, SAT-TV, Rückfahrkamera und alles was ihr für eine unvergessliche Reise braucht.</p>
+      <div class="hero-cta">
+        <a href="#verfuegbarkeit" class="btn-primary">Verfügbarkeit prüfen</a>
+        <a href="#kontakt" class="btn-secondary">Buchungsanfrage</a>
+      </div>
     </div>
-    <h1 class="hero-title">Der<br><span class="accent">Sonnenjäger</span></h1>
-    <p class="hero-subtitle">Familienwohnmobil · Alkoven · 6 Personen</p>
-    <p class="hero-desc">Ein vollausgestattetes Alkoven-Wohnmobil für Familien mit bis zu 6 Personen. Standheizung, SAT-TV, Rückfahrkamera und alles was ihr für eine unvergessliche Reise braucht.</p>
-    <div class="hero-cta">
-      <a href="#verfuegbarkeit" class="btn-primary">Verfügbarkeit prüfen</a>
-      <a href="#kontakt" class="btn-secondary">Buchungsanfrage</a>
+
+    <div class="hero-media">
+      <div class="carousel" id="heroCarousel">
+        <div class="carousel-track" id="heroTrack"></div>
+        <button class="carousel-btn prev" id="heroPrev" aria-label="Vorheriges Foto">‹</button>
+        <button class="carousel-btn next" id="heroNext" aria-label="Nächstes Foto">›</button>
+        <div class="carousel-dots" id="heroDots"></div>
+      </div>
     </div>
   </div>
 
-  <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-value">6</div>
-      <div class="stat-label">Schlafplätze</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value">7,23m</div>
-      <div class="stat-label">Fahrzeuglänge</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value">4,9★</div>
-      <div class="stat-label">PaulCamper</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value">2018</div>
-      <div class="stat-label">Baujahr</div>
-    </div>
-  </div>
+  <div class="hero-stats" id="heroStats"></div>
 </section>
 
 <!-- PREISE -->
@@ -600,27 +812,7 @@
   <div class="section-tag">Mietpreise 2026</div>
   <h2 class="section-title">Einfache, transparente<br>Preise.</h2>
 
-  <div class="preis-cards">
-    <div class="preis-card">
-      <div class="preis-season">Sparsaison</div>
-      <div class="preis-amount">100€</div>
-      <div class="preis-unit">pro Tag</div>
-      <div class="preis-period">November – März</div>
-    </div>
-    <div class="preis-card featured">
-      <!--div class="preis-badge">Beliebt</div-->
-      <div class="preis-season">Nebensaison</div>
-      <div class="preis-amount">115€</div>
-      <div class="preis-unit">pro Tag</div>
-      <div class="preis-period">April – Juni &amp; September – Oktober</div>
-    </div>
-    <div class="preis-card">
-      <div class="preis-season">Hauptsaison</div>
-      <div class="preis-amount">125€</div>
-      <div class="preis-unit">pro Tag</div>
-      <div class="preis-period">Juli - August + Ferien</div>
-    </div>
-  </div>
+  <div class="preis-cards" id="preisCards"></div>
 
   <div class="preis-info">
     <div class="info-item">
@@ -652,42 +844,20 @@
   <p style="margin-top:16px; font-size:0.82rem; color:var(--muted);">🟢 Verfügbar &nbsp;&nbsp; 🔴 Nicht verfügbar &nbsp;&nbsp; Anfragen bitte per E-Mail mit gewünschtem Reisezeitraum.</p>
 </section>
 
+<!-- GALERIE -->
+<section class="galerie" id="galerie">
+  <div class="section-tag">Einblicke</div>
+  <h2 class="section-title">Galerie.</h2>
+  <div class="galerie-grid" id="galerieGrid"></div>
+  <!-- Hinweis: Hier könnte später optional ein Instagram-Feed ergänzt werden
+       (erfordert Business-/Creator-Konto + Drittanbieter-Widget). -->
+</section>
+
 <!-- AUSSTATTUNG -->
 <section class="ausstattung" id="ausstattung">
   <div class="section-tag" style="color: rgba(245,166,35,0.7);">Vollausstattung</div>
   <h2 class="section-title">Alles dabei.</h2>
-  <div class="ausst-grid">
-    <div class="ausst-item">
-      <div class="ausst-icon">🛏️</div>
-      <div class="ausst-name">Schlafplätze</div>
-      <div class="ausst-detail">Alkoven 160×200 cm · Heckbett 90×200 cm · Sitzgruppe umbaubar 120×175 cm</div>
-    </div>
-    <div class="ausst-item">
-      <div class="ausst-icon">🍳</div>
-      <div class="ausst-name">Küche</div>
-      <div class="ausst-detail">3-Flammen-Gasherd · Kühlschrank mit Gefrierfach · Geschirr &amp; Besteck für 6 Personen komplett</div>
-    </div>
-    <div class="ausst-item">
-      <div class="ausst-icon">🚿</div>
-      <div class="ausst-name">Bad &amp; Sanitär</div>
-      <div class="ausst-detail">Raumbad mit Dusche · Kassettentoilette · Warmwasser · beheizte Tanks</div>
-    </div>
-    <div class="ausst-item">
-      <div class="ausst-icon">🌡️</div>
-      <div class="ausst-name">Heizung &amp; Klima</div>
-      <div class="ausst-detail">Truma Standheizung · Klimaanlage im Fahrerhaus · Wintertauglich</div>
-    </div>
-    <div class="ausst-item">
-      <div class="ausst-icon">📺</div>
-      <div class="ausst-name">Entertainment</div>
-      <div class="ausst-detail">TV mit SAT-Anlage · Radio mit Bluetooth/USB · Navi · Rückfahrkamera</div>
-    </div>
-    <div class="ausst-item">
-      <div class="ausst-icon">⛺</div>
-      <div class="ausst-name">Außen</div>
-      <div class="ausst-detail">Markise 4,5m · CEE-Kabeltrommel · Auffahrkeile · GPS-Tracker</div>
-    </div>
-  </div>
+  <div class="ausst-grid" id="ausstGrid"></div>
 </section>
 
 <!-- MIETBEDINGUNGEN -->
@@ -727,79 +897,173 @@
   <div class="section-tag">Jetzt anfragen</div>
   <h2 class="section-title">Buchungsanfrage.</h2>
 
-  <div class="kontakt-layout">
-
-    <div class="kontakt-form">
-      <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSfA1C6fijhA3u9hoxN77gerT4eWBRMgs-1qD5h0F4X5vLLp0g/viewform?embedded=true"
-        width="100%"
-        frameborder="0"
-        marginheight="0"
-        marginwidth="0"
-        title="Buchungsanfrage Sonnenjäger"
-        style="display:block; min-height: 1800px;">
-        Wird geladen…
-      </iframe>
-    </div>
-
-    <div class="kontakt-right">
-      <div class="kontakt-box">
-        <p>Füll das Formular aus – wir prüfen die Verfügbarkeit und melden uns schnellstmöglich zurück. Die Anfrage ist unverbindlich.</p>
-        <div class="kontakt-links">
-          <a href="mailto:bencis+vermietung@gmail.com" class="kontakt-link">
-            <span class="icon">✉️</span>
-            bencis+vermietung@gmail.com
-          </a>
-          <a href="tel:+4915128918103" class="kontakt-link">
-            <span class="icon">📞</span>
-            +49 1512 891 8103
-          </a>
-          <a href="https://www.paulcamper.de/rv/132040" target="_blank" class="kontakt-link">
-            <span class="icon">🏕️</span>
-            Profil auf PaulCamper
-          </a>
-          <a href="https://www.youtube.com/@womosonnenjaeger" target="_blank" class="kontakt-link">
-            <span class="icon">▶️</span>
-            Fahrzeugvideo auf YouTube
-          </a>
-        </div>
-      </div>
-
-      <div class="review">
-        <div class="stars">★★★★★</div>
-        <p class="review-text">„Von Beginn weg sehr angenehmer und kompetenter Vermieter. Wohnmobil entsprach mehr als den Erwartungen!"</p>
-        <p class="review-author">Christian, Juni 2025 · PaulCamper</p>
+  <div class="kontakt-inner">
+    <div class="kontakt-box">
+      <p>Schreib uns mit deinem gewünschten Reisezeitraum, Anzahl der Personen, Reiseziel und einer kurzen Vorstellung inkl. Campingerfahrung. Wir melden uns schnellstmöglich zurück.</p>
+      <div class="kontakt-links">
+        <a href="mailto:bencis+vermietung@gmail.com" class="kontakt-link">
+          <span class="icon">✉️</span>
+          bencis+vermietung@gmail.com
+        </a>
+        <a href="tel:+4915128918103" class="kontakt-link">
+          <span class="icon">📞</span>
+          +49 1512 891 8103
+        </a>
+        <a href="https://www.paulcamper.de/rv/132040" target="_blank" class="kontakt-link">
+          <span class="icon">🏕️</span>
+          Profil auf PaulCamper
+        </a>
+        <a href="https://www.youtube.com/@womosonnenjaeger" target="_blank" class="kontakt-link">
+          <span class="icon">▶️</span>
+          Fahrzeugvideo auf YouTube
+        </a>
       </div>
     </div>
+
+    <div id="reviews"></div>
   </div>
 </section>
-<script>
-  function resizeIframe(iframe) {
-    iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
-  }
 
-  // Get the form iframe
-  const formIframe = document.querySelector('.kontakt-form iframe');
-  
-  if (formIframe) {
-    // Resize on load
-    formIframe.addEventListener('load', function() {
-      resizeIframe(formIframe);
-    });
-    
-    // Try to resize periodically (Google Forms content may load dynamically)
-    setInterval(function() {
-      try {
-        resizeIframe(formIframe);
-      } catch(e) {
-        // Cross-origin issue - expected with Google Forms
-      }
-    }, 500);
-  }
-</script>
-</body>
 <!-- FOOTER -->
 <footer>
   <div class="logo-text">Der Sonnenjäger 🏹</div>
   <p>Sunlight A72 · Vilshofen an der Donau · Bayern</p>
-  <div style="
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lbClose" aria-label="Schließen">×</button>
+  <button class="lightbox-nav prev" id="lbPrev" aria-label="Vorheriges Foto">‹</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lightbox-nav next" id="lbNext" aria-label="Nächstes Foto">›</button>
+</div>
+
+<!-- ============================================================= -->
+<!--  RENDER-LOGIK  –  baut die Seite aus DATA. Normalerweise       -->
+<!--  nichts ändern müssen; Inhalte oben in DATA pflegen.           -->
+<!-- ============================================================= -->
+<script>
+(function () {
+  const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  // --- Eckdaten ---
+  document.getElementById('heroStats').innerHTML = DATA.eckdaten.map(s => `
+    <div class="stat">
+      <div class="stat-value">${esc(s.value)}</div>
+      <div class="stat-label">${esc(s.label)}</div>
+    </div>`).join('');
+
+  // --- Preise ---
+  document.getElementById('preisCards').innerHTML = DATA.preise.map(p => `
+    <div class="preis-card${p.featured ? ' featured' : ''}">
+      <div class="preis-season">${esc(p.saison)}</div>
+      <div class="preis-amount">${esc(p.preis)}€</div>
+      <div class="preis-unit">pro Tag</div>
+      <div class="preis-period">${esc(p.zeitraum)}</div>
+    </div>`).join('');
+
+  // --- Ausstattung ---
+  document.getElementById('ausstGrid').innerHTML = DATA.ausstattung.map(a => `
+    <div class="ausst-item">
+      <div class="ausst-icon">${a.icon}</div>
+      <div class="ausst-name">${esc(a.name)}</div>
+      <div class="ausst-detail">${esc(a.detail)}</div>
+    </div>`).join('');
+
+  // --- Reviews ---
+  document.getElementById('reviews').innerHTML = DATA.reviews.map(r => `
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">„${esc(r.text)}"</p>
+      <p class="review-author">${esc(r.author)}</p>
+    </div>`).join('');
+
+  // --- Hero-Carousel ---
+  const track = document.getElementById('heroTrack');
+  const dotsWrap = document.getElementById('heroDots');
+  const fotos = DATA.fotos;
+
+  track.innerHTML = fotos.map(f => `
+    <div class="slide">
+      <img src="${esc(f.src)}" alt="${esc(f.alt)}"
+           onerror="this.closest('.slide').classList.add('placeholder');
+                    this.closest('.slide').innerHTML='<div class=&quot;ph-icon&quot;>📷</div><div class=&quot;ph-text&quot;>Foto folgt</div>';">
+    </div>`).join('');
+
+  dotsWrap.innerHTML = fotos.map((_, i) =>
+    `<button data-i="${i}" class="${i === 0 ? 'active' : ''}" aria-label="Foto ${i + 1}"></button>`).join('');
+
+  let idx = 0;
+  const dots = [...dotsWrap.children];
+  function go(n) {
+    idx = (n + fotos.length) % fotos.length;
+    track.style.transform = `translateX(-${idx * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  }
+  document.getElementById('heroPrev').onclick = () => { go(idx - 1); restart(); };
+  document.getElementById('heroNext').onclick = () => { go(idx + 1); restart(); };
+  dots.forEach(d => d.onclick = () => { go(+d.dataset.i); restart(); });
+
+  // Auto-Advance (Pause bei Hover)
+  let timer = null;
+  const carousel = document.getElementById('heroCarousel');
+  function start() { timer = setInterval(() => go(idx + 1), 5000); }
+  function restart() { clearInterval(timer); start(); }
+  carousel.addEventListener('mouseenter', () => clearInterval(timer));
+  carousel.addEventListener('mouseleave', start);
+  if (fotos.length > 1) start();
+
+  // Touch-Swipe (Mobil)
+  let startX = 0;
+  carousel.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  carousel.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) { go(dx < 0 ? idx + 1 : idx - 1); restart(); }
+  }, { passive: true });
+
+  // --- Galerie ---
+  const grid = document.getElementById('galerieGrid');
+  grid.innerHTML = fotos.map((f, i) => `
+    <div class="galerie-item" data-i="${i}">
+      <img src="${esc(f.src)}" alt="${esc(f.alt)}"
+           onerror="const it=this.closest('.galerie-item'); it.classList.add('placeholder'); it.removeAttribute('data-i');
+                    it.innerHTML='<div class=&quot;ph-icon&quot;>📷</div><div class=&quot;ph-text&quot;>Foto folgt</div>';">
+    </div>`).join('');
+
+  // --- Lightbox ---
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  let lbIdx = 0;
+  function openLb(i) {
+    lbIdx = i;
+    lbImg.src = fotos[i].src;
+    lbImg.alt = fotos[i].alt;
+    lb.classList.add('open');
+  }
+  function lbGo(n) {
+    // nur über Items springen, die tatsächlich ein Bild haben
+    const valid = [...grid.querySelectorAll('.galerie-item[data-i]')].map(el => +el.dataset.i);
+    if (!valid.length) return;
+    let pos = valid.indexOf(lbIdx);
+    pos = (pos + n + valid.length) % valid.length;
+    openLb(valid[pos]);
+  }
+  grid.addEventListener('click', e => {
+    const item = e.target.closest('.galerie-item[data-i]');
+    if (item) openLb(+item.dataset.i);
+  });
+  document.getElementById('lbClose').onclick = () => lb.classList.remove('open');
+  document.getElementById('lbPrev').onclick = () => lbGo(-1);
+  document.getElementById('lbNext').onclick = () => lbGo(1);
+  lb.addEventListener('click', e => { if (e.target === lb) lb.classList.remove('open'); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') lb.classList.remove('open');
+    if (e.key === 'ArrowLeft') lbGo(-1);
+    if (e.key === 'ArrowRight') lbGo(1);
+  });
+})();
+</script>
+
+</body>
+</html>
