@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MMFC5XFL3F"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-MMFC5XFL3F');
-</script>
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="72821603-ab23-49f3-87b1-591bb2a0f60d" data-blockingmode="auto" type="text/javascript"></script>
+  <!-- Google tag (gtag.js) – blockiert bis Cookiebot-Einwilligung -->
+  <script type="text/plain" data-cookieconsent="statistics" async src="https://www.googletagmanager.com/gtag/js?id=G-MMFC5XFL3F"></script>
+  <script type="text/plain" data-cookieconsent="statistics">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MMFC5XFL3F');
+  </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Der Sonnenjäger – Sunlight A72 Wohnmobil mieten</title>
@@ -731,9 +732,9 @@
 const DATA = {
   // Mietpreise – "featured: true" hebt eine Karte hervor (dunkelgrün)
   preise: [
-    { saison: "Sparsaison",  preis: 89, zeitraum: "November – März" },
-    { saison: "Nebensaison", preis: 99, zeitraum: "April – Juni & September – Oktober", featured: true },
-    { saison: "Hauptsaison", preis: 105, zeitraum: "Juli – August + Ferien" },
+    { saison: "Sparsaison",  preis: 100, zeitraum: "November – März" },
+    { saison: "Nebensaison", preis: 115, zeitraum: "April – Juni & September – Oktober", featured: true },
+    { saison: "Hauptsaison", preis: 125, zeitraum: "Juli – August + Ferien" },
   ],
 
   // Eckdaten unter dem Hero
@@ -759,10 +760,12 @@ const DATA = {
   // Dateien in den Ordner /img/ hochladen (squoosh-komprimiert).
   // Solange eine Datei fehlt, wird automatisch ein Platzhalter angezeigt.
   heroFotos: [
-    { src: "img/Sunlight1.jpg", alt: "Sunlight A72 - Außenansicht" },
-    { src: "img/Sunlight2.jpg", alt: "Grundriss" },
-    { src: "img/Sunlight5.jpg",   alt: "Sunlight A72 - Rückenansicht" },
-    { src: "img/Sunlight3.jpg",  alt: "Wohnraum" },
+    { src: "img/aussen-1.jpg", alt: "Sunlight A72 – Außenansicht" },
+    { src: "img/wohnraum.jpg", alt: "Wohnraum mit Sitzgruppe" },
+    { src: "img/kueche.jpg",   alt: "Küche" },
+    { src: "img/alkoven.jpg",  alt: "Alkoven-Schlafbereich" },
+    { src: "img/bad.jpg",      alt: "Bad mit Dusche" },
+    { src: "img/aussen-2.jpg", alt: "Mit ausgefahrener Markise" },
   ],
 
   // Bewertungen
@@ -1118,11 +1121,28 @@ const DATA = {
     if (e.key === 'ArrowRight') showLb(lbIdx + 1);
   });
 
-  // --- Feed laden ---
-  fetch(DATA.abenteuerFeed, { cache: 'no-store' })
-    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-    .then(render)
-    .catch(() => { wrap.innerHTML = emptyState('womo_dersonnenjaeger'); });
+  // --- Feed laden – erst nach Cookiebot-Einwilligung (Kategorie Marketing) ---
+  function loadFeed(){
+    fetch(DATA.abenteuerFeed, { cache: 'no-store' })
+      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(render)
+      .catch(() => { wrap.innerHTML = emptyState('womo_dersonnenjaeger'); });
+  }
+  function consentNotice(){
+    wrap.innerHTML = `<div class="feed-empty">
+      <div class="feed-empty-icon">🔒</div>
+      <p>Die Instagram-Inhalte werden erst nach deiner Zustimmung geladen.</p>
+      <button class="btn-follow" type="button" onclick="window.Cookiebot && Cookiebot.renew && Cookiebot.renew()">Zustimmung verwalten</button>
+    </div>`;
+  }
+  function maybeLoad(){
+    const c = window.Cookiebot && window.Cookiebot.consent;
+    if (c && c.marketing) loadFeed(); else consentNotice();
+  }
+  window.addEventListener('CookiebotOnConsentReady', maybeLoad);
+  window.addEventListener('CookiebotOnAccept', maybeLoad);
+  // Falls Cookiebot beim Ausführen bereits bereit ist:
+  if (window.Cookiebot && window.Cookiebot.consent) maybeLoad(); else consentNotice();
 })();
 </script>
 
