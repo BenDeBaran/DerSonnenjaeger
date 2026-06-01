@@ -13,6 +13,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Der Sonnenjäger – Sunlight A72 Wohnmobil mieten</title>
+
+<!-- SEO / Social -->
+<meta name="description" content="Der Sonnenjäger – vollausgestattetes Sunlight A72 Alkoven-Wohnmobil für bis zu 6 Personen, zu mieten in Vilshofen an der Donau. Standheizung, SAT-TV, Rückfahrkamera. Ab 100 €/Tag.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Der Sonnenjäger – Sunlight A72 Wohnmobil mieten">
+<meta property="og:description" content="Familienwohnmobil (Alkoven, 6 Personen) zu mieten in Vilshofen an der Donau. Vollausstattung, faire Preise, 4,9★ auf PaulCamper.">
+<meta property="og:url" content="https://dersonnenjaeger.de/">
+<meta property="og:image" content="https://dersonnenjaeger.de/img/Sunlight1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -102,9 +112,10 @@
   .nav-links a:hover { color: var(--sun); }
 
   .hero-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
     padding: 0 48px;
     position: relative;
     z-index: 10;
@@ -204,6 +215,96 @@
 
   .btn-secondary:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
 
+  /* HERO FOTO-ROLL */
+  .hero-media { position: relative; z-index: 10; }
+
+  .carousel {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.5);
+    border: 1px solid rgba(245,166,35,0.25);
+    background: var(--forest-mid);
+  }
+
+  .carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .slide {
+    position: relative;
+    min-width: 100%;
+    height: 100%;
+  }
+
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Platzhalter, solange noch keine Fotos im /img/-Ordner liegen */
+  .slide.placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--forest-mid), var(--forest));
+    color: rgba(255,255,255,0.45);
+  }
+  .slide.placeholder .ph-icon { font-size: 2.4rem; opacity: 0.7; }
+  .slide.placeholder .ph-text { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(26,58,42,0.7);
+    color: var(--cream);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 3;
+  }
+  .carousel-btn:hover { background: var(--sun); color: var(--forest); }
+  .carousel-btn.prev { left: 12px; }
+  .carousel-btn.next { right: 12px; }
+
+  .carousel-dots {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    z-index: 3;
+  }
+  .carousel-dots button {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.4);
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.2s;
+  }
+  .carousel-dots button.active { background: var(--sun); width: 22px; border-radius: 4px; }
+
   .hero-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -258,6 +359,36 @@
 
   /* PREISE */
   .preise { background: var(--cream); }
+
+  .aktion-banner {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    background: var(--forest);
+    border-radius: 6px;
+    padding: 18px 24px;
+    margin-bottom: 36px;
+  }
+  .aktion-pill {
+    background: var(--sun);
+    color: var(--forest);
+    font-weight: 500;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .aktion-banner p {
+    margin: 0;
+    flex: 1;
+    min-width: 240px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.82);
+  }
 
   .preis-cards {
     display: grid;
@@ -362,6 +493,99 @@
     border: none;
   }
 
+  /* NEUESTE ABENTEUER (Behold-Feed, eigen gerendert) */
+  .abenteuer { background: var(--warm-white); }
+  .abenteuer-feed { max-width: 1100px; }
+
+  .abenteuer-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .ab-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--sun); }
+  .ab-user { font-weight: 500; color: var(--forest); text-decoration: none; }
+  .ab-user:hover { color: var(--sun-deep); }
+  .btn-follow {
+    margin-left: auto;
+    background: var(--forest);
+    color: var(--cream);
+    padding: 8px 18px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .btn-follow:hover { background: var(--forest-mid); }
+
+  .feed-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .feed-card {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border: none;
+    padding: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--cream);
+  }
+  .feed-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+  .feed-card:hover img { transform: scale(1.05); }
+  .feed-badge {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    color: #fff;
+    font-size: 0.9rem;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  }
+
+  .feed-empty {
+    text-align: center;
+    padding: 56px 24px;
+    border: 1px dashed rgba(26,58,42,0.25);
+    border-radius: 8px;
+    background: var(--cream);
+  }
+  .feed-empty-icon { font-size: 2rem; margin-bottom: 12px; }
+  .feed-empty p { color: var(--muted); margin-bottom: 20px; }
+
+  /* LIGHTBOX */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,20,15,0.92);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 32px 24px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-stage { display: flex; flex-direction: column; align-items: center; gap: 14px; max-width: 90vw; }
+  .lightbox-stage img, .lightbox-stage video { max-width: 90vw; max-height: 78vh; border-radius: 6px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+  .lb-caption { color: rgba(255,255,255,0.85); font-size: 0.9rem; max-width: 640px; text-align: center; line-height: 1.6; }
+  .lb-link { color: var(--sun); text-decoration: none; font-size: 0.85rem; }
+  .lb-link:hover { text-decoration: underline; }
+  .lightbox-close {
+    position: absolute; top: 20px; right: 26px;
+    font-size: 2rem; color: var(--cream); cursor: pointer;
+    line-height: 1; background: none; border: none;
+  }
+  .lightbox-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.1); border: none; color: var(--cream);
+    width: 48px; height: 48px; border-radius: 50%; font-size: 1.4rem; cursor: pointer;
+  }
+  .lightbox-nav.prev { left: 24px; }
+  .lightbox-nav.next { right: 24px; }
+
   /* AUSSTATTUNG */
   .ausstattung { background: var(--forest); color: white; }
   .ausstattung .section-title { color: var(--cream); }
@@ -439,9 +663,6 @@
   }
 
   .kontakt-form {
-    /*background: white;*/
-    /*border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 4px;*/
     overflow: hidden;
   }
 
@@ -532,8 +753,13 @@
     font-size: 0.8rem;
     transition: color 0.2s;
   }
-
   footer a:hover { color: var(--sun); }
+  .footer-links { display: flex; gap: 20px; }
+
+  @media (max-width: 900px) {
+    .hero-content { grid-template-columns: 1fr; gap: 36px; }
+    .hero-media { max-width: 520px; }
+  }
 
   @media (max-width: 768px) {
     nav { padding: 20px 24px; }
@@ -542,12 +768,66 @@
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
     .preis-cards, .ausst-grid { grid-template-columns: 1fr; }
     .bed-grid { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 8px; text-align: center; }
+    .feed-grid { grid-template-columns: repeat(2, 1fr); }
     .kontakt-layout { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
   }
 </style>
 </head>
 <body>
+
+<!-- ============================================================= -->
+<!--  ZENTRALE DATEN  –  hier (und NUR hier) Inhalte pflegen        -->
+<!-- ============================================================= -->
+<script>
+const DATA = {
+  // Mietpreise – "featured: true" hebt eine Karte hervor (dunkelgrün)
+  preise: [
+    { saison: "Sparsaison",  preis: 89, zeitraum: "November – März" },
+    { saison: "Nebensaison", preis: 99, zeitraum: "April – Juni & September – Oktober", featured: true },
+    { saison: "Hauptsaison", preis: 105, zeitraum: "Juli – August + Ferien" },
+  ],
+
+  // Aktions-Hinweis über den Preisen. Auf null setzen, um die Aktion zu beenden.
+  aktion: {
+    label: "Spritpreis-Aktion 2026",
+    text: "Wegen der aktuell hohen Spritpreise haben wir unsere Tagesmieten gesenkt – sichere dir jetzt die reduzierten Aktionspreise.",
+  },
+
+  // Eckdaten unter dem Hero
+  eckdaten: [
+    { value: "6",     label: "Schlafplätze" },
+    { value: "7,23m", label: "Fahrzeuglänge" },
+    { value: "4,9★",  label: "PaulCamper" },
+    { value: "2018",  label: "Baujahr" },
+  ],
+
+  // Ausstattung
+  ausstattung: [
+    { icon: "🛏️", name: "Schlafplätze",   detail: "Alkoven 160×200 cm · Heckbett 90×200 cm · Sitzgruppe umbaubar 120×175 cm" },
+    { icon: "🍳", name: "Küche",          detail: "3-Flammen-Gasherd · Kühlschrank mit Gefrierfach · Geschirr & Besteck für 6 Personen komplett" },
+    { icon: "🚿", name: "Bad & Sanitär",  detail: "Raumbad mit Dusche · Kassettentoilette · Warmwasser · beheizte Tanks" },
+    { icon: "🌡️", name: "Heizung & Klima", detail: "Truma Standheizung · Klimaanlage im Fahrerhaus · Wintertauglich" },
+    { icon: "📺", name: "Entertainment",  detail: "TV mit SAT-Anlage · Radio mit Bluetooth/USB · Navi · Rückfahrkamera" },
+    { icon: "⛺", name: "Außen",          detail: "Markise 4,5m · CEE-Kabeltrommel · Auffahrkeile · GPS-Tracker" },
+  ],
+
+  // Statische Hero-Fotos – kuratiert, aus dem Git-Repo /img/.
+  // (Der "Neueste Abenteuer"-Feed weiter unten kommt separat aus Behold/Instagram.)
+  // Dateien in den Ordner /img/ hochladen (squoosh-komprimiert).
+  // Solange eine Datei fehlt, wird automatisch ein Platzhalter angezeigt.
+  heroFotos: [
+    { src: "img/Sunlight1.jpg", alt: "Sunlight A72 – Außenansicht" },
+    { src: "img/Sunlight2.jpg", alt: "Sunlight A72 – Grundriss" },
+    { src: "img/Sunlight5.jpg", alt: "Sunlight A72 – Rückenansicht" },
+    { src: "img/Sunlight3.jpg", alt: "Sunlight A72 – Innenraum" },
+  ],
+
+  // "Neueste Abenteuer"-Feed – JSON-Feed aus Behold (spiegelt das Instagram-Konto).
+  // Leerer Feed -> es wird automatisch ein "bald geht's los"-Zustand gezeigt.
+  abenteuerFeed: "https://feeds.behold.so/Lt8p5jHu4WG4mLOlQUVV",
+};
+</script>
 
 <!-- HERO -->
 <section class="hero">
@@ -556,71 +836,48 @@
     <ul class="nav-links">
       <li><a href="#preise">Preise</a></li>
       <li><a href="#verfuegbarkeit">Verfügbarkeit</a></li>
+      <li><a href="#abenteuer">Abenteuer</a></li>
       <li><a href="#ausstattung">Ausstattung</a></li>
       <li><a href="#kontakt">Anfrage</a></li>
     </ul>
   </nav>
 
   <div class="hero-content">
-    <div class="hero-badge">
-      <div class="dot"></div>
-      <span>Sunlight A72 · Vilshofen a. d. Donau</span>
+    <div class="hero-text">
+      <div class="hero-badge">
+        <div class="dot"></div>
+        <span>Sunlight A72 · Vilshofen a. d. Donau</span>
+      </div>
+      <h1 class="hero-title">Der<br><span class="accent">Sonnenjäger</span></h1>
+      <p class="hero-subtitle">Familienwohnmobil · Alkoven · 6 Personen</p>
+      <p class="hero-desc">Ein vollausgestattetes Alkoven-Wohnmobil für Familien mit bis zu 6 Personen. Standheizung, SAT-TV, Rückfahrkamera und alles was ihr für eine unvergessliche Reise braucht.</p>
+      <div class="hero-cta">
+        <a href="#verfuegbarkeit" class="btn-primary">Verfügbarkeit prüfen</a>
+        <a href="#kontakt" class="btn-secondary">Buchungsanfrage</a>
+      </div>
     </div>
-    <h1 class="hero-title">Der<br><span class="accent">Sonnenjäger</span></h1>
-    <p class="hero-subtitle">Familienwohnmobil · Alkoven · 6 Personen</p>
-    <p class="hero-desc">Ein vollausgestattetes Alkoven-Wohnmobil für Familien mit bis zu 6 Personen. Standheizung, SAT-TV, Rückfahrkamera und alles was ihr für eine unvergessliche Reise braucht.</p>
-    <div class="hero-cta">
-      <a href="#verfuegbarkeit" class="btn-primary">Verfügbarkeit prüfen</a>
-      <a href="#kontakt" class="btn-secondary">Buchungsanfrage</a>
+
+    <div class="hero-media">
+      <div class="carousel" id="heroCarousel">
+        <div class="carousel-track" id="heroTrack"></div>
+        <button class="carousel-btn prev" id="heroPrev" aria-label="Vorheriges Foto">‹</button>
+        <button class="carousel-btn next" id="heroNext" aria-label="Nächstes Foto">›</button>
+        <div class="carousel-dots" id="heroDots"></div>
+      </div>
     </div>
   </div>
 
-  <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-value">6</div>
-      <div class="stat-label">Schlafplätze</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value">7,23m</div>
-      <div class="stat-label">Fahrzeuglänge</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value">4,9★</div>
-      <div class="stat-label">PaulCamper</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value">2018</div>
-      <div class="stat-label">Baujahr</div>
-    </div>
-  </div>
+  <div class="hero-stats" id="heroStats"></div>
 </section>
 
 <!-- PREISE -->
 <section class="preise" id="preise">
-  <div class="section-tag">Mietpreise 2026</div>
+  <div class="section-tag">Spritpreis-Aktion 2026</div>
   <h2 class="section-title">Einfache, transparente<br>Preise.</h2>
 
-  <div class="preis-cards">
-    <div class="preis-card">
-      <div class="preis-season">Sparsaison</div>
-      <div class="preis-amount">100€</div>
-      <div class="preis-unit">pro Tag</div>
-      <div class="preis-period">November – März</div>
-    </div>
-    <div class="preis-card featured">
-      <!--div class="preis-badge">Beliebt</div-->
-      <div class="preis-season">Nebensaison</div>
-      <div class="preis-amount">115€</div>
-      <div class="preis-unit">pro Tag</div>
-      <div class="preis-period">April – Juni &amp; September – Oktober</div>
-    </div>
-    <div class="preis-card">
-      <div class="preis-season">Hauptsaison</div>
-      <div class="preis-amount">125€</div>
-      <div class="preis-unit">pro Tag</div>
-      <div class="preis-period">Juli - August + Ferien</div>
-    </div>
-  </div>
+  <div id="aktionBanner"></div>
+
+  <div class="preis-cards" id="preisCards"></div>
 
   <div class="preis-info">
     <div class="info-item">
@@ -633,7 +890,7 @@
     </div>
     <div class="info-item">
       <span class="info-label">Mindestmietdauer</span>
-      <span class="info-value">7 Tage</span>
+      <span class="info-value">5 Tage</span>
     </div>
     <div class="info-item">
       <span class="info-label">Versicherung</span>
@@ -652,42 +909,18 @@
   <p style="margin-top:16px; font-size:0.82rem; color:var(--muted);">🟢 Verfügbar &nbsp;&nbsp; 🔴 Nicht verfügbar &nbsp;&nbsp; Anfragen bitte per E-Mail mit gewünschtem Reisezeitraum.</p>
 </section>
 
+<!-- NEUESTE ABENTEUER (Instagram via Behold JSON-Feed, eigen gerendert) -->
+<section class="abenteuer" id="abenteuer">
+  <div class="section-tag">Unterwegs</div>
+  <h2 class="section-title">Die neuesten Abenteuer<br>des Sonnenjägers.</h2>
+  <div class="abenteuer-feed" id="abenteuerFeed"><!-- wird per JS aus dem Behold-Feed gefüllt --></div>
+</section>
+
 <!-- AUSSTATTUNG -->
 <section class="ausstattung" id="ausstattung">
   <div class="section-tag" style="color: rgba(245,166,35,0.7);">Vollausstattung</div>
   <h2 class="section-title">Alles dabei.</h2>
-  <div class="ausst-grid">
-    <div class="ausst-item">
-      <div class="ausst-icon">🛏️</div>
-      <div class="ausst-name">Schlafplätze</div>
-      <div class="ausst-detail">Alkoven 160×200 cm · Heckbett 90×200 cm · Sitzgruppe umbaubar 120×175 cm</div>
-    </div>
-    <div class="ausst-item">
-      <div class="ausst-icon">🍳</div>
-      <div class="ausst-name">Küche</div>
-      <div class="ausst-detail">3-Flammen-Gasherd · Kühlschrank mit Gefrierfach · Geschirr &amp; Besteck für 6 Personen komplett</div>
-    </div>
-    <div class="ausst-item">
-      <div class="ausst-icon">🚿</div>
-      <div class="ausst-name">Bad &amp; Sanitär</div>
-      <div class="ausst-detail">Raumbad mit Dusche · Kassettentoilette · Warmwasser · beheizte Tanks</div>
-    </div>
-    <div class="ausst-item">
-      <div class="ausst-icon">🌡️</div>
-      <div class="ausst-name">Heizung &amp; Klima</div>
-      <div class="ausst-detail">Truma Standheizung · Klimaanlage im Fahrerhaus · Wintertauglich</div>
-    </div>
-    <div class="ausst-item">
-      <div class="ausst-icon">📺</div>
-      <div class="ausst-name">Entertainment</div>
-      <div class="ausst-detail">TV mit SAT-Anlage · Radio mit Bluetooth/USB · Navi · Rückfahrkamera</div>
-    </div>
-    <div class="ausst-item">
-      <div class="ausst-icon">⛺</div>
-      <div class="ausst-name">Außen</div>
-      <div class="ausst-detail">Markise 4,5m · CEE-Kabeltrommel · Auffahrkeile · GPS-Tracker</div>
-    </div>
-  </div>
+  <div class="ausst-grid" id="ausstGrid"></div>
 </section>
 
 <!-- MIETBEDINGUNGEN -->
@@ -746,9 +979,9 @@
       <div class="kontakt-box">
         <p>Füll das Formular aus – wir prüfen die Verfügbarkeit und melden uns schnellstmöglich zurück. Die Anfrage ist unverbindlich.</p>
         <div class="kontakt-links">
-          <a href="mailto:bencis+vermietung@gmail.com" class="kontakt-link">
+          <a href="mailto:buchung@dersonnenjaeger.de" class="kontakt-link">
             <span class="icon">✉️</span>
-            bencis+vermietung@gmail.com
+            buchung@dersonnenjaeger.de
           </a>
           <a href="tel:+4915128918103" class="kontakt-link">
             <span class="icon">📞</span>
@@ -773,33 +1006,227 @@
     </div>
   </div>
 </section>
-<script>
-  function resizeIframe(iframe) {
-    iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
-  }
 
-  // Get the form iframe
-  const formIframe = document.querySelector('.kontakt-form iframe');
-  
-  if (formIframe) {
-    // Resize on load
-    formIframe.addEventListener('load', function() {
-      resizeIframe(formIframe);
-    });
-    
-    // Try to resize periodically (Google Forms content may load dynamically)
-    setInterval(function() {
-      try {
-        resizeIframe(formIframe);
-      } catch(e) {
-        // Cross-origin issue - expected with Google Forms
-      }
-    }, 500);
-  }
-</script>
-</body>
+<!-- Hinweis: Die Höhe des Google-Form-iframes wird über das feste min-height
+     gesteuert. Ein automatisches Nachführen ist nicht möglich, da Google Forms
+     cross-origin läuft (Browser blockiert den Zugriff auf fremde iframe-Inhalte). -->
+
 <!-- FOOTER -->
 <footer>
   <div class="logo-text">Der Sonnenjäger 🏹</div>
   <p>Sunlight A72 · Vilshofen an der Donau · Bayern</p>
-  <div style="
+  <div class="footer-links">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </div>
+</footer>
+
+<!-- LIGHTBOX (für den Abenteuer-Feed) -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lbClose" aria-label="Schließen">×</button>
+  <button class="lightbox-nav prev" id="lbPrev" aria-label="Vorheriger Beitrag">‹</button>
+  <div class="lightbox-stage" id="lbStage"></div>
+  <button class="lightbox-nav next" id="lbNext" aria-label="Nächster Beitrag">›</button>
+</div>
+
+<!-- ============================================================= -->
+<!--  RENDER-LOGIK  –  baut die Seite aus DATA. Normalerweise       -->
+<!--  nichts ändern müssen; Inhalte oben in DATA pflegen.           -->
+<!-- ============================================================= -->
+<script>
+(function () {
+  const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  // --- Eckdaten ---
+  document.getElementById('heroStats').innerHTML = DATA.eckdaten.map(s => `
+    <div class="stat">
+      <div class="stat-value">${esc(s.value)}</div>
+      <div class="stat-label">${esc(s.label)}</div>
+    </div>`).join('');
+
+  // --- Aktions-Banner ---
+  const aktionEl = document.getElementById('aktionBanner');
+  if (aktionEl) {
+    aktionEl.innerHTML = DATA.aktion ? `
+      <div class="aktion-banner">
+        <span class="aktion-pill">${esc(DATA.aktion.label)}</span>
+        <p>${esc(DATA.aktion.text)}</p>
+      </div>` : '';
+  }
+
+  // --- Preise ---
+  document.getElementById('preisCards').innerHTML = DATA.preise.map(p => `
+    <div class="preis-card${p.featured ? ' featured' : ''}">
+      <div class="preis-season">${esc(p.saison)}</div>
+      <div class="preis-amount">${esc(p.preis)}€</div>
+      <div class="preis-unit">pro Tag</div>
+      <div class="preis-period">${esc(p.zeitraum)}</div>
+    </div>`).join('');
+
+  // --- Ausstattung ---
+  document.getElementById('ausstGrid').innerHTML = DATA.ausstattung.map(a => `
+    <div class="ausst-item">
+      <div class="ausst-icon">${a.icon}</div>
+      <div class="ausst-name">${esc(a.name)}</div>
+      <div class="ausst-detail">${esc(a.detail)}</div>
+    </div>`).join('');
+
+  // --- Hero-Carousel ---
+  const track = document.getElementById('heroTrack');
+  const dotsWrap = document.getElementById('heroDots');
+  const fotos = DATA.heroFotos;
+
+  track.innerHTML = fotos.map(f => `
+    <div class="slide">
+      <img src="${esc(f.src)}" alt="${esc(f.alt)}"
+           onerror="this.closest('.slide').classList.add('placeholder');
+                    this.closest('.slide').innerHTML='<div class=&quot;ph-icon&quot;>📷</div><div class=&quot;ph-text&quot;>Foto folgt</div>';">
+    </div>`).join('');
+
+  dotsWrap.innerHTML = fotos.map((_, i) =>
+    `<button data-i="${i}" class="${i === 0 ? 'active' : ''}" aria-label="Foto ${i + 1}"></button>`).join('');
+
+  let idx = 0;
+  const dots = [...dotsWrap.children];
+  function go(n) {
+    idx = (n + fotos.length) % fotos.length;
+    track.style.transform = `translateX(-${idx * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  }
+  document.getElementById('heroPrev').onclick = () => { go(idx - 1); restart(); };
+  document.getElementById('heroNext').onclick = () => { go(idx + 1); restart(); };
+  dots.forEach(d => d.onclick = () => { go(+d.dataset.i); restart(); });
+
+  // Auto-Advance (Pause bei Hover)
+  let timer = null;
+  const carousel = document.getElementById('heroCarousel');
+  function start() { timer = setInterval(() => go(idx + 1), 5000); }
+  function restart() { clearInterval(timer); start(); }
+  carousel.addEventListener('mouseenter', () => clearInterval(timer));
+  carousel.addEventListener('mouseleave', start);
+  if (fotos.length > 1) start();
+
+  // Touch-Swipe (Mobil)
+  let startX = 0;
+  carousel.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  carousel.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) { go(dx < 0 ? idx + 1 : idx - 1); restart(); }
+  }, { passive: true });
+})();
+</script>
+
+<!-- ABENTEUER-FEED  –  holt den Behold-JSON-Feed und rendert ihn im Seiten-Design -->
+<script>
+(function () {
+  const wrap = document.getElementById('abenteuerFeed');
+  if (!wrap) return;
+
+  const escA = s => String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  function igUrl(user){ return 'https://www.instagram.com/' + encodeURIComponent(user) + '/'; }
+
+  function emptyState(user){
+    return `<div class="feed-empty">
+      <div class="feed-empty-icon">🧭</div>
+      <p>Die ersten Abenteuer sind bald hier zu sehen.</p>
+      <a class="btn-follow" href="${igUrl(user)}" target="_blank" rel="noopener">Auf Instagram folgen</a>
+    </div>`;
+  }
+
+  // beste verfügbare Bildgröße wählen
+  function pickSize(p, order){
+    const sz = p.sizes || {};
+    for (const k of order){ if (sz[k] && sz[k].mediaUrl) return sz[k].mediaUrl; }
+    return p.thumbnailUrl || p.mediaUrl || '';
+  }
+  const thumbOf = p => pickSize(p, ['medium','large','small','full']);
+  const fullOf  = p => pickSize(p, ['large','full','medium']);
+
+  let posts = [];
+
+  function cardHtml(p, i){
+    const isVideo = p.mediaType === 'VIDEO';
+    const isAlbum = p.mediaType === 'CAROUSEL_ALBUM';
+    const badge = isVideo ? '▶' : (isAlbum ? '▦' : '');
+    return `<button class="feed-card" data-i="${i}" aria-label="Beitrag öffnen">
+        <img src="${escA(thumbOf(p))}" alt="${escA(p.caption || 'Instagram-Beitrag')}" loading="lazy">
+        ${badge ? `<span class="feed-badge">${badge}</span>` : ''}
+      </button>`;
+  }
+
+  function render(feed){
+    const user = feed.username || 'womo_dersonnenjaeger';
+    posts = Array.isArray(feed.posts) ? feed.posts : [];
+    if (!posts.length){ wrap.innerHTML = emptyState(user); return; }
+
+    const head = `<div class="abenteuer-head">
+        ${feed.profilePictureUrl ? `<img class="ab-avatar" src="${escA(feed.profilePictureUrl)}" alt="">` : ''}
+        <a class="ab-user" href="${igUrl(user)}" target="_blank" rel="noopener">@${escA(user)}</a>
+        <a class="btn-follow" href="${igUrl(user)}" target="_blank" rel="noopener">Folgen</a>
+      </div>`;
+    wrap.innerHTML = head + `<div class="feed-grid">${posts.map(cardHtml).join('')}</div>`;
+  }
+
+  // --- Lightbox ---
+  const lb = document.getElementById('lightbox');
+  const stage = document.getElementById('lbStage');
+  let lbIdx = 0;
+
+  function showLb(i){
+    lbIdx = (i + posts.length) % posts.length;
+    const p = posts[lbIdx];
+    const caption = p.caption ? `<p class="lb-caption">${escA(p.caption)}</p>` : '';
+    const link = p.permalink ? `<a class="lb-link" href="${escA(p.permalink)}" target="_blank" rel="noopener">Auf Instagram ansehen ↗</a>` : '';
+    if (p.mediaType === 'VIDEO'){
+      stage.innerHTML = `<video src="${escA(p.mediaUrl)}" poster="${escA(p.thumbnailUrl || thumbOf(p))}" controls autoplay playsinline></video>${caption}${link}`;
+    } else {
+      stage.innerHTML = `<img src="${escA(fullOf(p))}" alt="${escA(p.caption || '')}">${caption}${link}`;
+    }
+    lb.classList.add('open');
+  }
+  function closeLb(){ lb.classList.remove('open'); stage.innerHTML = ''; }
+
+  wrap.addEventListener('click', e => {
+    const card = e.target.closest('.feed-card[data-i]');
+    if (card) showLb(+card.dataset.i);
+  });
+  document.getElementById('lbClose').onclick = closeLb;
+  document.getElementById('lbPrev').onclick = () => showLb(lbIdx - 1);
+  document.getElementById('lbNext').onclick = () => showLb(lbIdx + 1);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') showLb(lbIdx - 1);
+    if (e.key === 'ArrowRight') showLb(lbIdx + 1);
+  });
+
+  // --- Feed laden – erst nach Cookiebot-Einwilligung (Kategorie Marketing) ---
+  function loadFeed(){
+    fetch(DATA.abenteuerFeed, { cache: 'no-store' })
+      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(render)
+      .catch(() => { wrap.innerHTML = emptyState('womo_dersonnenjaeger'); });
+  }
+  function consentNotice(){
+    wrap.innerHTML = `<div class="feed-empty">
+      <div class="feed-empty-icon">🔒</div>
+      <p>Die Instagram-Inhalte werden erst nach deiner Zustimmung geladen.</p>
+      <button class="btn-follow" type="button" onclick="window.Cookiebot && Cookiebot.renew && Cookiebot.renew()">Zustimmung verwalten</button>
+    </div>`;
+  }
+  function maybeLoad(){
+    const c = window.Cookiebot && window.Cookiebot.consent;
+    if (c && c.marketing) loadFeed(); else consentNotice();
+  }
+  window.addEventListener('CookiebotOnConsentReady', maybeLoad);
+  window.addEventListener('CookiebotOnAccept', maybeLoad);
+  // Falls Cookiebot beim Ausführen bereits bereit ist:
+  if (window.Cookiebot && window.Cookiebot.consent) maybeLoad(); else consentNotice();
+})();
+</script>
+
+</body>
+</html>
