@@ -357,6 +357,15 @@
     margin-bottom: 48px;
   }
 
+  /* FREIHEIT */
+  .freiheit { background: var(--cream);}
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
   /* PREISE */
   .preise { background: var(--cream); }
 
@@ -825,7 +834,7 @@ const DATA = {
 
   // "Neueste Abenteuer"-Feed – JSON-Feed aus Behold (spiegelt das Instagram-Konto).
   // Leerer Feed -> es wird automatisch ein "bald geht's los"-Zustand gezeigt.
-  abenteuerFeed: "https://feeds.behold.so/Lt8p5jHu4WG4mLOlQUVV",
+  abenteuerFeed: "https://feeds.behold.so/Poq5R5VibHH7KZr4jh5I",
 };
 </script>
 
@@ -834,6 +843,7 @@ const DATA = {
   <nav>
     <div class="nav-logo">Der Sonnenjäger</div>
     <ul class="nav-links">
+      <li><a href="#freiheit">Freiheit</a></li>
       <li><a href="#preise">Preise</a></li>
       <li><a href="#verfuegbarkeit">Verfügbarkeit</a></li>
       <li><a href="#abenteuer">Abenteuer</a></li>
@@ -870,6 +880,19 @@ const DATA = {
   <div class="hero-stats" id="heroStats"></div>
 </section>
 
+<!-- FREIHEIT -->
+<section class="freiheit" id="freiheit">
+  <div class="section-tag">Grußwort</div>
+  <h2 class="section-title">Freiheit.</h2>
+
+  <div class="text">
+    Der Sonnenjäger bedeutet Freiheit. <br>
+    Die Freiheit deine Route zu wählen. Anzuhalten wo es am schönsten ist. Spontan die Richtung zu wechseln und dem Regen zu entkommen. <br>
+    Familienerlebnisse zu sammeln und als Familie zusammen zu wachsen. Direkt am Wasser zu schlafen. Die Natur in ihrer ganzen Pracht zu erleben. <br>
+    Neue Freundschaften zu knüpfen. Unter vielen tollen Menschen oder ganz alleine unter Mond und Sternen.
+  </div>
+</section>
+  
 <!-- PREISE -->
 <section class="preise" id="preise">
   <div class="section-tag">Spritpreis-Aktion 2026</div>
